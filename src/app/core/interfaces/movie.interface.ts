@@ -4,7 +4,7 @@ export interface MovieShort {
 	genre: string;
 	length: number;
 	productionYear: number;
-	releaseDate: Date;
+	releaseDate: number;
 	fsk: string;
 	posterUrl: string;
 }

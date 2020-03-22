@@ -27,15 +27,15 @@ export class ScheduleStubService {
 
 				scheduleForCurrentId = [
 					...scheduleForCurrentId,
-					referenceStartTime.toDate(),
+					referenceStartTime.unix() * 1000,
 					referenceStartTime
 						.add(1, 'hour')
 						.add(30, 'minutes')
-						.toDate(),
+						.unix() * 1000,
 					referenceStartTime
 						.add(2, 'hours')
 						.add(15, 'minutes')
-						.toDate(),
+						.unix() * 1000,
 				];
 			}
 

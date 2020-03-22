@@ -34,16 +34,16 @@ export class MovieScheduleComponent {
 
 		for (let i = 0; i < 7; i++) {
 			const date = moment()
-				.add(i, 'days')
-				.startOf('day');
+				.startOf('day')
+				.add(i, 'days');
 
 			const times: any[] = [];
 
-			for (const scheduleDate of schedule) {
-				const scheduleMoment = moment(scheduleDate).startOf('day');
+			for (const scheduleTimeStamp of schedule) {
+				const scheduleMoment = moment(scheduleTimeStamp).startOf('day');
 
 				if (date.valueOf() === scheduleMoment.valueOf()) {
-					times.push(scheduleMoment.unix() * 1000);
+					times.push(scheduleTimeStamp);
 				}
 			}
 

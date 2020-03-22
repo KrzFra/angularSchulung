@@ -6,7 +6,7 @@
 
 	<div class="app-movie-schedule__time" *ngFor="let time of scheduleByDay.times">
 		<a [routerLink]="'/seat-selection'">
-			{{ time | date: 'hh:mm' }}
+			{{ time | date: 'shortTime' }}
 		</a>
 	</div>
 </div>

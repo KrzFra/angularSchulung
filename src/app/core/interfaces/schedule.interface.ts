@@ -1,4 +1,4 @@
-export type Schedule = Date[];
+export type Schedule = number[];
 
 export type Schedules = Record<string, Schedule>;
 
