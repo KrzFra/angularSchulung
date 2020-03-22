@@ -1,3 +1,3 @@
-
-
-<app-movie-summary *ngFor="let movie of movies$ | async"  [movie]="movie"></app-movie-summary>
+<ng-container *ngFor="let movie of movies$ | async">
+	<app-movie-schedule-overview [movie]="movie" [schedule]="schedules[movie.id]"></app-movie-schedule-overview>
+</ng-container>

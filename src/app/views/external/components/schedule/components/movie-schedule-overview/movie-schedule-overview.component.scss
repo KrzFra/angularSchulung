@@ -1,0 +1,13 @@
+.app-movie-schedule-overview {
+	&:host {
+		display: flex;
+	}
+
+	&__movie-summary {
+		flex: 1 0 400px;
+	}
+
+	&__movie-schedule {
+		flex: 10;
+	}
+}
