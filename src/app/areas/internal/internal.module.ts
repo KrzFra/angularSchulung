@@ -1,7 +1,7 @@
 import { InternalRoutingModule } from './internal-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReservedSeatsComponent } from './components/reserved-seats/reserved-seats.component';
+import { ReservedSeatsComponent } from './views/reserved-seats/reserved-seats.component';
 
 @NgModule({
 	declarations: [ReservedSeatsComponent],

@@ -1,10 +1,10 @@
-import { LoginComponent } from './components/login/login.component';
-import { LocationComponent } from './components/location/location.component';
-import { MakeReservationComponent } from './components/make-reservation/make-reservation.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ScheduleComponent } from './components/schedule/schedule.component';
-import { SeatSelectionComponent } from './components/seat-selection/seat-selection.component';
+import { LocationComponent } from './views/location/location.component';
+import { LoginComponent } from './views/login/login.component';
+import { MakeReservationComponent } from './views/make-reservation/make-reservation.component';
+import { ScheduleComponent } from './views/schedule/schedule.component';
+import { SeatSelectionComponent } from './views/seat-selection/seat-selection.component';
 
 const routes: Routes = [
 	{

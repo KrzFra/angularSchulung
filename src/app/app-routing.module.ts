@@ -4,11 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 	{
 		path: 'internal',
-		loadChildren: () => import('./views/internal/internal.module').then(m => m.InternalModule),
+		loadChildren: () => import('./areas/internal/internal.module').then(m => m.InternalModule),
 	},
 	{
 		path: '',
-		loadChildren: () => import('./views/external/external.module').then(m => m.ExternalModule),
+		loadChildren: () => import('./areas/external/external.module').then(m => m.ExternalModule),
 	},
 	{
 		path: '**',

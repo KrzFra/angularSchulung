@@ -1,6 +1,6 @@
-import { ReservedSeatsComponent } from './components/reserved-seats/reserved-seats.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ReservedSeatsComponent } from './views/reserved-seats/reserved-seats.component';
 
 const routes: Routes = [
 	{
