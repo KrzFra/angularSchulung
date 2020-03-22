@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MovieShort } from '@core/interfaces/movie.interface';
+import { MovieService } from '@core/services/movie.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-schedule',
@@ -7,7 +10,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScheduleComponent implements OnInit {
-	constructor() {}
+	movies$: Observable<MovieShort[]>;
 
-	ngOnInit(): void {}
+	constructor(private movieService: MovieService) {}
+
+	ngOnInit() {
+		this.movies$ = this.movieService.getMovies();
+	}
 }

@@ -1,1 +1,3 @@
-<p>schedule works!</p>
+
+
+<app-movie-summary *ngFor="let movie of movies$ | async"  [movie]="movie"></app-movie-summary>
