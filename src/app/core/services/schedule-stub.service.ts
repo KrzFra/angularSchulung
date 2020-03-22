@@ -15,7 +15,9 @@ export class ScheduleStubService {
 		for (const id of ids) {
 			let scheduleForCurrentId = [];
 
-			const referenceStartTime = moment().subtract(1, 'day');
+			const referenceStartTime = moment()
+				.seconds(0)
+				.subtract(1, 'day');
 
 			for (let i = 0; i < 7; i++) {
 				referenceStartTime

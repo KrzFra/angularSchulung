@@ -14,7 +14,7 @@ export class MovieStubService {
 			genre: 'genre1',
 			length: 101,
 			productionYear: 2011,
-			releaseDate: new Date('2011-01-01'),
+			releaseDate: new Date(1293840000000),
 			fsk: 'PG1',
 			posterUrl: '/assets/movie-poster/movie1.png',
 			description: '',

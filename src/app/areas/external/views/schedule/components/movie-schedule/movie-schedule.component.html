@@ -1,1 +1,12 @@
-<p>movie-schedule works!</p>
+<div class="app-movie-schedule__column" *ngFor="let scheduleByDay of schedulesByDay">
+	<div class="app-movie-schedule__header">
+		<div>{{ scheduleByDay.dateLabel }}</div>
+		<div>{{ scheduleByDay.date }}</div>
+	</div>
+
+	<div class="app-movie-schedule__time" *ngFor="let time of scheduleByDay.times">
+		<a [routerLink]="'/seat-selection'">
+			{{ time | date: 'hh:mm' }}
+		</a>
+	</div>
+</div>
