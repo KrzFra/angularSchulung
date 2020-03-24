@@ -1,6 +1,6 @@
 export interface MovieShort {
-	title: string;
 	id: string;
+	title: string;
 	genre: string;
 	length: number;
 	productionYear: number;
@@ -9,8 +9,6 @@ export interface MovieShort {
 	posterUrl: string;
 }
 
-interface MovieExtensionForLong {
+export interface MovieLong extends MovieShort {
 	description: string;
 }
-
-export type MovieLong = MovieShort & MovieExtensionForLong;

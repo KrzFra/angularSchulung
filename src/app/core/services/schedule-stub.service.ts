@@ -1,4 +1,4 @@
-import { Schedules, Schedule } from './../interfaces/schedule.interface';
+import { Schedules, Schedule, ScheduleEntry } from './../interfaces/schedule.interface';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
@@ -10,10 +10,11 @@ export class ScheduleStubService {
 	private schedules: Schedules = {};
 
 	constructor() {
-		const ids = ['1', '2', '3'];
+		const movieIds = ['1', '2', '3'];
+		const theaterIds = ['1', '2'];
 
-		for (const id of ids) {
-			let scheduleForCurrentId = [];
+		for (const id of movieIds) {
+			let scheduleForCurrentId: Schedule = [];
 
 			const referenceStartTime = moment()
 				.seconds(0)
@@ -27,15 +28,26 @@ export class ScheduleStubService {
 
 				scheduleForCurrentId = [
 					...scheduleForCurrentId,
-					referenceStartTime.unix() * 1000,
-					referenceStartTime
-						.add(1, 'hour')
-						.add(30, 'minutes')
-						.unix() * 1000,
-					referenceStartTime
-						.add(2, 'hours')
-						.add(15, 'minutes')
-						.unix() * 1000,
+					{
+						time: referenceStartTime.unix() * 1000,
+						theater: '1',
+					},
+					{
+						time:
+							referenceStartTime
+								.add(1, 'hour')
+								.add(30, 'minutes')
+								.unix() * 1000,
+						theater: '2',
+					},
+					{
+						time:
+							referenceStartTime
+								.add(2, 'hours')
+								.add(15, 'minutes')
+								.unix() * 1000,
+						theater: '1',
+					},
 				];
 			}
 
@@ -49,5 +61,9 @@ export class ScheduleStubService {
 
 	getSchedule(movieId: string): Observable<Schedule> {
 		return of(this.schedules[movieId]);
+	}
+
+	getTheaterId(movieId: string, time: number): Observable<string> {
+		return of(this.schedules[movieId].find(s => s.time === time).theater);
 	}
 }

@@ -27,29 +27,31 @@ export class MovieScheduleComponent {
 		this.schedulesByDay = this.generateSchedulesByDay(this.schedule);
 	}
 
+	@Input() movieId: string;
+
 	schedulesByDay: ScheduleByDay[];
 
 	generateSchedulesByDay(schedule: Schedule): ScheduleByDay[] {
 		const scheduleByDay: ScheduleByDay[] = [];
 
 		for (let i = 0; i < 7; i++) {
-			const date = moment()
+			const today = moment()
 				.startOf('day')
 				.add(i, 'days');
 
 			const times: any[] = [];
 
-			for (const scheduleTimeStamp of schedule) {
-				const scheduleMoment = moment(scheduleTimeStamp).startOf('day');
+			for (const scheduleEntry of schedule) {
+				const scheduleTime = moment(scheduleEntry.time).startOf('day');
 
-				if (date.valueOf() === scheduleMoment.valueOf()) {
-					times.push(scheduleTimeStamp);
+				if (today.valueOf() === scheduleTime.valueOf()) {
+					times.push(scheduleEntry.time);
 				}
 			}
 
 			scheduleByDay[i] = {
-				dateLabel: this.generateDateLabel(date),
-				date: date.format('DD.MM'),
+				dateLabel: this.generateDateLabel(today),
+				date: today.format('DD.MM'),
 				times,
 			};
 		}

@@ -17,4 +17,8 @@ export class ScheduleService {
 	getSchedule(movieId: string): Observable<Schedule> {
 		return this.http.get<Schedule>(`/api/schedules/${movieId}`);
 	}
+
+	getTheaterId(movieId: string, time: number): Observable<string> {
+		return this.http.get<string>(`/api/schedules/${movieId}/${time}`);
+	}
 }

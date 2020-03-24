@@ -1,2 +1,6 @@
 <app-movie-summary class="app-movie-schedule-overview__movie-summary" [movie]="movie"></app-movie-summary>
-<app-movie-schedule [schedule]="schedule" class="app-movie-schedule-overview__movie-schedule"></app-movie-schedule>
+<app-movie-schedule
+	[movieId]="movie.id"
+	[schedule]="schedule"
+	class="app-movie-schedule-overview__movie-schedule"
+></app-movie-schedule>
