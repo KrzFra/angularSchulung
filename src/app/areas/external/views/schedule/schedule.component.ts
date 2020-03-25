@@ -1,8 +1,8 @@
-import { Schedules } from './../../../../core/interfaces/schedule.interface';
-import { ScheduleService } from './../../../../core/services/schedule.service';
-import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieShort } from '@core/interfaces/movie.interface';
-import { MovieService } from '@core/services/movie.service';
+import { Schedules } from '@core/interfaces/schedule.interface';
+import { MovieService } from '@core/services/movie/movie.service';
+import { ScheduleService } from '@core/services/schedule/schedule.service';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({

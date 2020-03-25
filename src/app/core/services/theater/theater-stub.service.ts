@@ -1,6 +1,6 @@
-import { Theater } from './../interfaces/theater.interface';
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
+import { Theater } from '@core/interfaces/theater.interface';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',

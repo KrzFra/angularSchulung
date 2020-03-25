@@ -1,7 +1,7 @@
-import { Schedules, Schedule, ScheduleEntry } from './../interfaces/schedule.interface';
-import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Schedule, Schedules } from '@core/interfaces/schedule.interface';
 import * as moment from 'moment';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -11,7 +11,6 @@ export class ScheduleStubService {
 
 	constructor() {
 		const movieIds = ['1', '2', '3'];
-		const theaterIds = ['1', '2'];
 
 		for (const id of movieIds) {
 			let scheduleForCurrentId: Schedule = [];

@@ -1,14 +1,14 @@
 import { Reservation } from '@core/interfaces/reservation.interface';
-import { ReservationService } from './../../../../core/services/reservation.service';
-import { Theater } from './../../../../core/interfaces/theater.interface';
-import { TheaterService } from './../../../../core/services/theater.service';
-import { ScheduleService } from '@core/services/schedule.service';
+import { ReservationService } from '@core/services/reservation/reservation.service';
+import { Theater } from '@core/interfaces/theater.interface';
+import { TheaterService } from '@core/services/theater/theater.service';
+import { ScheduleService } from '@core/services/schedule/schedule.service';
 import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieLong } from '@core/interfaces/movie.interface';
-import { MovieService } from '@core/services/movie.service';
+import { MovieService } from '@core/services/movie/movie.service';
 import { Subscription, forkJoin } from 'rxjs';
-import { map, mergeMap, concatMap } from 'rxjs/operators';
+import { map, concatMap } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-seat-selection',

@@ -1,5 +1,5 @@
-import { Reservation } from './../interfaces/reservation.interface';
 import { Injectable } from '@angular/core';
+import { Reservation } from '@core/interfaces/reservation.interface';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

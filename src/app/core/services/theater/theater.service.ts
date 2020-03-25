@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Theater } from '@core/interfaces/theater.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',

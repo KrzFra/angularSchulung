@@ -1,7 +1,6 @@
-import { MovieLong } from './../interfaces/movie.interface';
 import { Injectable } from '@angular/core';
+import { MovieLong, MovieShort } from '@core/interfaces/movie.interface';
 import { Observable, of } from 'rxjs';
-import { MovieShort } from '../interfaces/movie.interface';
 
 @Injectable({
 	providedIn: 'root',
@@ -50,19 +49,20 @@ export class MovieStubService {
 	];
 
 	getMovies(): Observable<MovieShort[]> {
-		const shortenedMovies: MovieShort[] = this.movies.map((movieLong: MovieLong) => {
-			const movieShort = { ...movieLong };
-			delete movieShort.description;
+		const shortenedMovies: MovieShort[] = this.movies.map(
+			(movieLong: MovieLong): MovieShort => {
+				const movieShort = { ...movieLong };
+				delete movieShort.description;
 
-			return movieShort;
-		});
+				return movieShort;
+			}
+		);
 
 		return of(shortenedMovies);
 	}
 
 	getMovie(movieId: string): Observable<MovieLong> {
 		const mov = this.movies.find(m => m.id === movieId);
-		console.log('getMovies', mov);
 		return of(mov);
 	}
 }

@@ -1,4 +1,4 @@
-import { Schedule } from './../interfaces/schedule.interface';
+import { Schedule } from '@core/interfaces/schedule.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Schedules } from '@core/interfaces/schedule.interface';
