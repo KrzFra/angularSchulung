@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Schedule, Schedules } from '@core/interfaces/schedule.interface';
+import { Schedule } from '@core/interfaces/schedule.interface';
 import * as moment from 'moment';
-import { Observable, of } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class ScheduleStubService {
-	private schedules: Schedules = {};
+	private scheduleSubject = new ReplaySubject<Schedule>(1);
+	private schedule$ = this.scheduleSubject.asObservable();
 
 	constructor() {
 		const movieIds = ['1', '2', '3'];
+		const schedules: Schedule = [];
 
-		for (const id of movieIds) {
-			let scheduleForCurrentId: Schedule = [];
-
+		for (const movieId of movieIds) {
 			const referenceStartTime = moment()
 				.seconds(0)
 				.subtract(1, 'day');
@@ -25,11 +26,11 @@ export class ScheduleStubService {
 					.minutes(0)
 					.add(1, 'day');
 
-				scheduleForCurrentId = [
-					...scheduleForCurrentId,
+				schedules.push(
 					{
 						time: referenceStartTime.unix() * 1000,
-						theater: '1',
+						theater: Math.floor(Math.random() * 2).toString(),
+						movie: movieId,
 					},
 					{
 						time:
@@ -37,7 +38,8 @@ export class ScheduleStubService {
 								.add(1, 'hour')
 								.add(30, 'minutes')
 								.unix() * 1000,
-						theater: '2',
+						theater: Math.floor(Math.random() * 2).toString(),
+						movie: movieId,
 					},
 					{
 						time:
@@ -45,24 +47,26 @@ export class ScheduleStubService {
 								.add(2, 'hours')
 								.add(15, 'minutes')
 								.unix() * 1000,
-						theater: '1',
-					},
-				];
+						theater: Math.floor(Math.random() * 2).toString(),
+						movie: movieId,
+					}
+				);
 			}
-
-			this.schedules[id] = scheduleForCurrentId;
 		}
+
+		this.scheduleSubject.next(schedules);
+		this.scheduleSubject.complete();
 	}
 
-	getSchedules(): Observable<Schedules> {
-		return of(this.schedules);
+	getSchedules(): Observable<Schedule> {
+		return this.schedule$;
 	}
 
 	getSchedule(movieId: string): Observable<Schedule> {
-		return of(this.schedules[movieId]);
+		return this.schedule$.pipe(map(ss => ss.filter(s => s.movie === movieId)));
 	}
 
 	getTheaterId(movieId: string, time: number): Observable<string> {
-		return of(this.schedules[movieId].find(s => s.time === time).theater);
+		return this.schedule$.pipe(map(ss => ss.find(s => s.movie === movieId && s.time === time).theater));
 	}
 }

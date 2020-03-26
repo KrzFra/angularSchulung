@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CoreModule } from '@core/core.module';
+import { MovieSummaryLongComponent } from './../../shared/components/movie-summary-long/movie-summary-long.component';
 import { SharedModule } from './../../shared/shared.module';
 import { ExternalRoutingModule } from './external-routing.module';
 import { LocationComponent } from './views/location/location.component';
@@ -16,16 +17,17 @@ import { SeatSelectionComponent } from './views/seat-selection/seat-selection.co
 
 @NgModule({
 	declarations: [
-		ScheduleComponent,
-		SeatSelectionComponent,
-		MakeReservationComponent,
 		LocationComponent,
 		LoginComponent,
-		MovieScheduleOverviewComponent,
+		MakeReservationComponent,
 		MovieScheduleComponent,
-		SeatSelectorComponent,
-		SeatSelectionSummaryComponent,
+		MovieScheduleOverviewComponent,
+		MovieSummaryLongComponent,
+		ScheduleComponent,
 		SeatComponent,
+		SeatSelectionComponent,
+		SeatSelectionSummaryComponent,
+		SeatSelectorComponent,
 	],
 	imports: [CoreModule, CommonModule, ExternalRoutingModule, SharedModule],
 })

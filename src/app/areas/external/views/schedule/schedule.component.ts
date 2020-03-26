@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieShort } from '@core/interfaces/movie.interface';
-import { Schedules } from '@core/interfaces/schedule.interface';
+import { Schedule } from '@core/interfaces/schedule.interface';
 import { MovieService } from '@core/services/movie/movie.service';
 import { ScheduleService } from '@core/services/schedule/schedule.service';
 import { Observable, Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
 	movies$: Observable<MovieShort[]>;
-	schedules: Schedules;
+	schedulesByMovie: Record<string, Schedule>;
 
 	subscriptions: Subscription[] = [];
 
@@ -23,8 +23,20 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 		this.movies$ = this.movieService.getMovies();
 
 		this.subscriptions.push(
-			this.scheduleService.getSchedules().subscribe((schedules: Schedules) => {
-				this.schedules = schedules;
+			this.scheduleService.getSchedules().subscribe((schedules: Schedule) => {
+				const schedulesByMovie: Record<string, Schedule> = {};
+
+				for (const schedule of schedules) {
+					const { movie } = schedule;
+
+					if (!(movie in schedulesByMovie)) {
+						schedulesByMovie[movie] = [];
+					}
+
+					schedulesByMovie[movie].push(schedule);
+				}
+
+				this.schedulesByMovie = schedulesByMovie;
 			})
 		);
 	}
