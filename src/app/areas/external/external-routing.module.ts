@@ -3,13 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { LocationComponent } from './views/location/location.component';
 import { LoginComponent } from './views/login/login.component';
 import { MakeReservationComponent } from './views/make-reservation/make-reservation.component';
-import { ScheduleComponent } from './views/schedule/schedule.component';
 import { SeatSelectionComponent } from './views/seat-selection/seat-selection.component';
 
 const routes: Routes = [
 	{
 		path: 'schedule',
-		component: ScheduleComponent,
+		loadChildren: () => import('./views/schedule/schedule.module').then((m) => m.ScheduleModule),
 	},
 	{
 		path: 'seat-selection',
