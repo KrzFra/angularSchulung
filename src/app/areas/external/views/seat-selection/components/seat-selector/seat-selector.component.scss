@@ -1,0 +1,33 @@
+.seat-selector {
+	&__seats {
+		&__row {
+			display: flex;
+			margin-bottom: 7px;
+		}
+
+		&__seat {
+			flex-grow: 1;
+
+			&:not(:last-of-type) {
+				margin-right: 7px;
+			}
+		}
+	}
+
+	&__legend {
+		&__row {
+			display: flex;
+			align-items: center;
+			margin-bottom: 0.5em;
+		}
+
+		&__seat {
+			width: 25px;
+		}
+
+		&__label {
+			flex-grow: 1;
+			margin-left: 1em;
+		}
+	}
+}

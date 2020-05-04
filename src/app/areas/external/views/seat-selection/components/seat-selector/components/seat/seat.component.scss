@@ -1,7 +1,12 @@
 .app-seat {
+	&:host {
+		display: block;
+	}
+
 	&__seat {
-		width: 10px;
+		width: 100%;
 		padding-bottom: 100%;
 		background: red;
+		border-radius: 3px;
 	}
 }

@@ -1,1 +1,34 @@
-<p>seat-selector works!</p>
+<h3>Theater: {{ theater.label }}</h3>
+<div class="seat-selector__screen">screen</div>
+<div class="seat-selector__seats">
+	<div class="seat-selector__seats__row" *ngFor="let rowId of rows">
+		<app-seat
+			class="seat-selector__seats__seat"
+			*ngFor="let seatId of seatsInRows"
+			[style.transform]="getTranslationYFor(seatId)"
+		></app-seat>
+	</div>
+</div>
+<div class="seat-selector__legend">
+	<div class="seat-selector__legend__row">
+		<app-seat class="seat-selector__legend__seat"></app-seat>
+		<div class="seat-selector__legend__label">free</div>
+	</div>
+	<div class="seat-selector__legend__row">
+		<app-seat class="seat-selector__legend__seat"></app-seat>
+		<div class="seat-selector__legend__label">reserved</div>
+	</div>
+	<div class="seat-selector__legend__row">
+		<app-seat class="seat-selector__legend__seat"></app-seat>
+		<div class="seat-selector__legend__label">currently selected</div>
+	</div>
+</div>
+
+<div>
+	{{ getTranslationYFor(1) }}
+	{{ getTranslationYFor(2) }}
+	{{ getTranslationYFor(3) }}
+	{{ getTranslationYFor(4) }}
+	{{ getTranslationYFor(5) }}
+	{{ getTranslationYFor(16) }}
+</div>
