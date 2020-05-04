@@ -1,11 +1,11 @@
+import { Screening } from '@core/interfaces/schedule.interface';
 import { ChangeDetectionStrategy, Component, Input, OnInit, HostBinding } from '@angular/core';
-import { Schedule } from '@core/interfaces/schedule.interface';
 import * as moment from 'moment';
 
 interface ScheduleByDay {
 	dateLabel: string;
 	date: string;
-	times: any[];
+	times: number[];
 }
 
 @Component({
@@ -17,45 +17,43 @@ interface ScheduleByDay {
 export class MovieScheduleComponent {
 	@HostBinding() class = 'app-movie-schedule';
 
-	private scheduleLocal: Schedule;
-	get schedule(): Schedule {
-		return this.scheduleLocal;
+	private _screenings: Screening[];
+	get screenings(): Screening[] {
+		return this._screenings;
 	}
-	@Input() set schedule(value: Schedule) {
-		this.scheduleLocal = value;
+	@Input() set screenings(value: Screening[]) {
+		this._screenings = value;
 
-		this.schedulesByDay = this.generateSchedulesByDay(this.schedule);
+		this.schedulesByDay = this.generateSchedulesByDay(this.screenings);
 	}
 
 	@Input() movieId: string;
 
 	schedulesByDay: ScheduleByDay[];
 
-	generateSchedulesByDay(schedule: Schedule): ScheduleByDay[] {
-		const scheduleByDay: ScheduleByDay[] = [];
+	generateSchedulesByDay(screenings: Screening[]): ScheduleByDay[] {
+		const screeningsByDay: ScheduleByDay[] = [];
 
 		for (let i = 0; i < 7; i++) {
-			const today = moment()
-				.startOf('day')
-				.add(i, 'days');
+			const evaluatedDay = moment().startOf('day').add(i, 'days');
 
-			const times: any[] = [];
+			const times: number[] = [];
 
-			for (const scheduleEntry of schedule) {
-				const scheduleTime = moment(scheduleEntry.time).startOf('day');
+			for (const screening of screenings) {
+				const screeningTime = moment(screening.time);
 
-				if (today.valueOf() === scheduleTime.valueOf()) {
-					times.push(scheduleEntry.time);
+				if (evaluatedDay.date() === screeningTime.date()) {
+					times.push(screening.time);
 				}
 			}
 
-			scheduleByDay[i] = {
-				dateLabel: this.generateDateLabel(today),
-				date: today.format('DD.MM'),
+			screeningsByDay[i] = {
+				dateLabel: this.generateDateLabel(evaluatedDay),
+				date: evaluatedDay.format('DD.MM'),
 				times,
 			};
 		}
-		return scheduleByDay;
+		return screeningsByDay;
 	}
 
 	generateDateLabel(date: moment.Moment): string {

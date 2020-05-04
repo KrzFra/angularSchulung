@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieShort } from '@core/interfaces/movie.interface';
-import { Schedule } from '@core/interfaces/schedule.interface';
 import { MovieService } from '@core/services/movie/movie.service';
 import { ScheduleService } from '@core/services/schedule/schedule.service';
 import { Observable, Subscription } from 'rxjs';
+import { Screening } from '@core/interfaces/schedule.interface';
 
 @Component({
 	selector: 'app-schedule',
@@ -13,7 +13,7 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
 	movies$: Observable<MovieShort[]>;
-	schedulesByMovie: Record<string, Schedule>;
+	screeningsByMovie: Record<string, Screening[]> = {};
 
 	subscriptions: Subscription[] = [];
 
@@ -23,8 +23,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 		this.movies$ = this.movieService.getMovies();
 
 		this.subscriptions.push(
-			this.scheduleService.getSchedules().subscribe((schedules: Schedule) => {
-				const schedulesByMovie: Record<string, Schedule> = {};
+			this.scheduleService.getSchedules().subscribe((schedules: Screening[]) => {
+				const schedulesByMovie: Record<string, Screening[]> = {};
 
 				for (const schedule of schedules) {
 					const { movie } = schedule;
@@ -36,12 +36,12 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 					schedulesByMovie[movie].push(schedule);
 				}
 
-				this.schedulesByMovie = schedulesByMovie;
+				this.screeningsByMovie = schedulesByMovie;
 			})
 		);
 	}
 
 	ngOnDestroy() {
-		this.subscriptions.forEach(s => s.unsubscribe());
+		this.subscriptions.forEach((s) => s.unsubscribe());
 	}
 }

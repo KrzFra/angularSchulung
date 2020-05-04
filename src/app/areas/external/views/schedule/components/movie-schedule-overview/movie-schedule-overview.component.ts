@@ -1,4 +1,4 @@
-import { Schedule } from '@core/interfaces/schedule.interface';
+import { Screening } from '@core/interfaces/schedule.interface';
 import { MovieShort } from '@core/interfaces/movie.interface';
 import { Component, OnInit, HostBinding, Input, ChangeDetectionStrategy } from '@angular/core';
 
@@ -12,7 +12,7 @@ export class MovieScheduleOverviewComponent implements OnInit {
 	@HostBinding() class = 'app-movie-schedule-overview';
 
 	@Input() movie: MovieShort;
-	@Input() schedule: Schedule;
+	@Input() screenings: Screening[];
 
 	constructor() {}
 

@@ -1,7 +1,5 @@
-export interface ScheduleEntry {
+export interface Screening {
 	time: number;
 	theater: string;
 	movie: string;
 }
-
-export type Schedule = ScheduleEntry[];

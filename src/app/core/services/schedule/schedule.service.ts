@@ -1,8 +1,7 @@
-import { Schedule } from '@core/interfaces/schedule.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Schedules } from '@core/interfaces/schedule.interface';
 import { Observable } from 'rxjs';
+import { Screening } from '@core/interfaces/schedule.interface';
 
 @Injectable({
 	providedIn: 'root',
@@ -10,12 +9,12 @@ import { Observable } from 'rxjs';
 export class ScheduleService {
 	constructor(private http: HttpClient) {}
 
-	getSchedules(): Observable<Schedules> {
-		return this.http.get<Schedules>('/api/schedules');
+	getSchedules(): Observable<Screening[]> {
+		return this.http.get<Screening[]>('/api/schedules');
 	}
 
-	getSchedule(movieId: string): Observable<Schedule> {
-		return this.http.get<Schedule>(`/api/schedules/${movieId}`);
+	getSchedule(movieId: string): Observable<Screening[]> {
+		return this.http.get<Screening[]>(`/api/schedules/${movieId}`);
 	}
 
 	getTheaterId(movieId: string, time: number): Observable<string> {
