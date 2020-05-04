@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LocationComponent } from './views/location/location.component';
 import { LoginComponent } from './views/login/login.component';
-import { MakeReservationComponent } from './views/make-reservation/make-reservation.component';
+import { MakeReservationComponent } from './views/make-reservation/view/make-reservation.component';
 import { SeatSelectionComponent } from './views/seat-selection/seat-selection.component';
 
 const routes: Routes = [
