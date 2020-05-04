@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LocationComponent } from './views/location/location.component';
+import { LocationComponent } from './views/location/view/location.component';
 import { SeatSelectionComponent } from './views/seat-selection/seat-selection.component';
 
 const routes: Routes = [
