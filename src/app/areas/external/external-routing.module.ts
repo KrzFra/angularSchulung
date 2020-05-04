@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LocationComponent } from './views/location/location.component';
-import { LoginComponent } from './views/login/login.component';
-import { MakeReservationComponent } from './views/make-reservation/view/make-reservation.component';
 import { SeatSelectionComponent } from './views/seat-selection/seat-selection.component';
 
 const routes: Routes = [
@@ -16,7 +14,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'make-reservation',
-		component: MakeReservationComponent,
+		loadChildren: () => import('./views/make-reservation/make-reservation.module').then((m) => m.MakeReservationModule),
 	},
 	{
 		path: 'location',
@@ -24,7 +22,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'login',
-		component: LoginComponent,
+		loadChildren: () => import('./views/login/login.module').then((m) => m.LoginModule),
 	},
 	{
 		path: '**',
