@@ -22,7 +22,6 @@ import { SeatSelectionComponent } from './views/seat-selection/seat-selection.co
 		MakeReservationComponent,
 		MovieScheduleComponent,
 		MovieScheduleOverviewComponent,
-		MovieSummaryLongComponent,
 		ScheduleComponent,
 		SeatComponent,
 		SeatSelectionComponent,
