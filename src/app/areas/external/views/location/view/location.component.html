@@ -1,1 +1,28 @@
-<p>location works!</p>
+<main class="grid">
+    
+    <!--The div element for the map -->
+    <div class="map" id="map"></div>
+    <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore vero adipisci tempora accusamus earum, nesciunt ad quae qui accusantium reiciendis. Aperiam qui accusamus nesciunt, sed ipsum reiciendis nostrum praesentium vitae?</p>
+    
+    
+    <p class="aboutUs">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quaerat, dolores provident, tempore adipisci labore asperiores ipsam voluptate eum sapiente molestias consectetur deserunt quos consequuntur vel similique dolorum quisquam quo.
+    </p>
+
+
+</main>
+    
+<script>
+    function initMap() {
+        // The location of Uluru
+        var uluru = { lat: 48.137154, lng: 11.576124 };
+
+        var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 4, center: uluru });
+        u
+        var marker = new google.maps.Marker({ position: uluru, map: map });
+    }
+</script>
+
+<!-- insert API KEY -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>

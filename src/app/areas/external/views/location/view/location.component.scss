@@ -1,0 +1,31 @@
+/* Set the size of the div element that contains the map */
+#map {
+    height: 400px; /* The height is 400 pixels */
+    width: 100%;/* The width is the width of the web page */
+    background-color: red;
+}
+
+
+.map {
+    display: block;
+    grid-area: map;
+}
+.description {
+    
+    display: block;
+    grid-area: description;
+    
+}
+
+.aboutUs{
+    display: block;
+    grid-area: aboutUs;
+}
+
+.grid {
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+        "map description"
+        "aboutUs aboutUs";
+}
