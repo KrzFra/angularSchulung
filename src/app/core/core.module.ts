@@ -5,7 +5,7 @@ import { MainMenuComponent } from './components/main-menu/main-menu.component';
 
 @NgModule({
 	declarations: [MainMenuComponent],
-	imports: [CommonModule],
+	imports: [CommonModule, RouterModule],
 	exports: [MainMenuComponent],
 })
 export class CoreModule {}
