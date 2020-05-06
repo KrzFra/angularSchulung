@@ -4,9 +4,12 @@
 		<div>{{ scheduleByDay.date }}</div>
 	</div>
 
-	<div class="app-movie-schedule__time" *ngFor="let time of scheduleByDay.times">
-		<a routerLink="/seat-selection" [queryParams]="{ 'movie-id': movieId, 'screening-time': time }">
-			{{ time | date: 'shortTime' }}
-		</a>
-	</div>
+	<a
+		class="app-movie-schedule__cell"
+		*ngFor="let time of scheduleByDay.times"
+		routerLink="/seat-selection"
+		[queryParams]="{ 'movie-id': movieId, 'screening-time': time }"
+	>
+		{{ time | date: 'shortTime' }}
+	</a>
 </div>

@@ -1,3 +1,5 @@
+@import 'constants/colors';
+
 * {
 	box-sizing: border-box;
 }
@@ -10,9 +12,12 @@
 body {
 	margin: 0;
 	font-family: Roboto, sans-serif;
+	background-color: $colors__background;
+	color: $colors__text;
 }
 
 .app-content-wrapper {
-	width: 920px;
+	max-width: 940px;
+	padding: 0 20px;
 	margin: 0 auto;
 }

@@ -2,7 +2,6 @@
 	&:host {
 		display: flex;
 		flex-direction: row;
-		border: 3px solid green;
 	}
 
 	&__poster {
@@ -16,6 +15,16 @@
 
 	&__details {
 		flex: 4 0 200px;
-		padding: 1em;
+		padding: 0 1em;
+
+		> dl {
+			dt {
+				font-weight: bold;
+			}
+
+			> dd {
+				margin-bottom: 0.75em;
+			}
+		}
 	}
 }
