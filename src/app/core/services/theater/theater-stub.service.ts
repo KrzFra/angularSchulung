@@ -13,13 +13,13 @@ export class TheaterStubService {
 			id: '1',
 			label: 'east',
 			rows: 20,
-			seatsInRows: 30,
+			seatsInRows: 15,
 		},
 		{
 			id: '2',
 			label: 'west',
-			rows: 40,
-			seatsInRows: 40,
+			rows: 15,
+			seatsInRows: 10,
 		},
 	];
 

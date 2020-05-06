@@ -1,12 +1,13 @@
 <h3>Theater: {{ theater.label }}</h3>
 <div class="seat-selector__screen">screen</div>
-<div class="seat-selector__seats">
+<div class="seat-selector__seats" [style.padding-bottom]="maxTranslation + 'px'">
 	<div class="seat-selector__seats__row" *ngFor="let rowId of rows">
 		<app-seat
 			class="seat-selector__seats__seat"
 			*ngFor="let seatId of seatsInRows"
-			[style.transform]="getTranslationYFor(seatId)"
-		></app-seat>
+			[style.transform]="getTransformFor(seatId)"
+			>{{ seatId }}</app-seat
+		>
 	</div>
 </div>
 <div class="seat-selector__legend">
@@ -25,10 +26,10 @@
 </div>
 
 <div>
-	{{ getTranslationYFor(1) }}
-	{{ getTranslationYFor(2) }}
-	{{ getTranslationYFor(3) }}
-	{{ getTranslationYFor(4) }}
-	{{ getTranslationYFor(5) }}
-	{{ getTranslationYFor(16) }}
+	{{ getTransformFor(1) }}
+	{{ getTransformFor(2) }}
+	{{ getTransformFor(3) }}
+	{{ getTransformFor(4) }}
+	{{ getTransformFor(5) }}
+	{{ getTransformFor(16) }}
 </div>

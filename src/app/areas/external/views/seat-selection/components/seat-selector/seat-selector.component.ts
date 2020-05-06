@@ -15,7 +15,7 @@ export class SeatSelectorComponent implements OnInit {
 	rows: number[];
 	seatsInRows: number[];
 
-	maxTranslation = 50;
+	maxTranslation = 10;
 
 	ngOnInit(): void {
 		this.rows = Array(this.theater.rows)
@@ -26,17 +26,13 @@ export class SeatSelectorComponent implements OnInit {
 			.map((_, i) => i + 1);
 	}
 
-	getTranslationYFor(seatId: number): string {
-		console.log(seatId, this.theater.seatsInRows);
+	getTransformFor(seatId: number): string {
+		const parabelX = (seatId - 1) / this.theater.seatsInRows;
+		const parabelY = -4 * parabelX ** 2 + 4 * parabelX; // parabel with constrictions: [0,0], [0.5,1], [1,0]
 
-		const x = (seatId - 1) / this.theater.seatsInRows;
+		const translationY = Math.ceil(parabelY * this.maxTranslation);
+		const rotationZ = Math.floor((1 - parabelY) * 7) * (parabelX > 0.5 ? -1 : 1);
 
-		const a = -4;
-		const b = 4;
-
-		const translationY = Math.ceil((a * x ** 2 + b * x) * this.maxTranslation);
-		console.log(x, a, b, translationY);
-
-		return `translateY(${translationY}px)`;
+		return `translateY(${translationY}px) rotateZ(${rotationZ}deg)`;
 	}
 }
