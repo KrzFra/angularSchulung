@@ -1,31 +1,33 @@
-/* Set the size of the div element that contains the map */
-#map {
-    height: 400px; /* The height is 400 pixels */
-    width: 100%;/* The width is the width of the web page */
-    background-color: red;
+@mixin GridElement($gridAreaName){
+    grid-area: $gridAreaName;
+    min-width: 400px;
+    max-width: 750px;
+    padding: 20px;
 }
-
-
-.map {
-    width:50vw;
-    grid-area: map;
-}
-.description {
-    
-    width:50vw;
-    grid-area: description;
-    
-}
-
-.aboutUs{
-    width:100vw;
-    display: block;
-    grid-area: aboutUs;
-}
-
-.grid {
-    display: grid;
-    grid-template-areas:
-        "map description"
-        "aboutUs aboutUs";
+.app-location{
+    &__aboutUs {
+        @include GridElement(aboutUs);
+    }
+    &__description {
+        @include GridElement(description);
+    } 
+    &__grid {
+        display: grid;
+        grid-template-areas:
+            "map"
+            "description"
+            "aboutUs";
+            @media (min-width: 800px) {
+                display: grid;
+                grid-template-areas:
+                    "map description"
+                    "aboutUs  aboutUs";
+                grid-template-columns: 1fr 1fr;
+            }
+    }   
+    &__map {
+        @include GridElement(map);
+        height: 400px;
+        width: 100%;
+    }
 }

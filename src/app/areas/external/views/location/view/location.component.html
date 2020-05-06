@@ -1,28 +1,36 @@
-<main class="grid">
-    
-    <!--The div element for the map -->
-    <div class="map" id="map"></div>
-    <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore vero adipisci tempora accusamus earum, nesciunt ad quae qui accusantium reiciendis. Aperiam qui accusamus nesciunt, sed ipsum reiciendis nostrum praesentium vitae?</p>
-    
-    
-    <p class="aboutUs">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quaerat, dolores provident, tempore adipisci labore asperiores ipsam voluptate eum sapiente molestias consectetur deserunt quos consequuntur vel similique dolorum quisquam quo.
-    </p>
+<main class="app-location__grid">
+
+    <!--The section element for the map -->
+    <iframe class="app-location__map"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10657.70507920725!2d11.5999675!3d48.1020122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479ddfbce55b9d6d%3A0x8133dd4bb36be9a2!2sclever%20fit%20M%C3%BCnchen-Giesing!5e0!3m2!1spl!2sde!4v1588756539046!5m2!1spl!2sde"
+        frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+    <section class="app-location__description">
+        <h2 class="app-location__descriptionHeader">How to find us</h2>
+        <p>
+
+            Unwind and get set to lose yourself in the film ahead with soothing hot drinks and scrumptious snacks at our
+            Costa as well as icy indulgences with Ben and Jerry's.
+            We also have a licensed bar serving of alcoholic and soft drinks, all of which can be taken into your film
+            for a luxurious viewing experience.</p>
+    </section>
+
+
+
+    <section class="app-location__aboutUs">
+
+        <h2 class="app-location__descriptionHeader">About us</h2>
+        <p>
+
+            General Manager: Trevor Cavell
+
+            We have 1 monster IMAX screen for immersive, eye-popping entertainment. Treat yourself to an exclusive
+            entertainment experience with our Premier seats and double Premier seats, cafe culture at Costa and icy
+            indulgences at Ben and Jerry's.
+
+            Online bookers can also enjoy super speedy ticket pick up at our 3 fast ticket machines in the main foyer.
+        </p>
+    </section>
 
 
 </main>
-    
-<script>
-    function initMap() {
-        // The location of Uluru
-        var uluru = { lat: 48.137154, lng: 11.576124 };
-
-        var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 4, center: uluru });
-        u
-        var marker = new google.maps.Marker({ position: uluru, map: map });
-    }
-</script>
-
-<!-- insert API KEY -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-</script>
