@@ -1,15 +1,16 @@
-<div class="app-movie-summary__poster"><img [src]="movie.posterUrl" alt="" /></div>
-<div class="app-movie-summary__details">
-	<dl>
-		<dt>Genre:</dt>
-		<dd>{{ movie.genre }}</dd>
-		<dt>FSK:</dt>
-		<dd>{{ movie.fsk }}</dd>
-		<dt>Length:</dt>
-		<dd>{{ movie.length }} minutes</dd>
-		<dt>Production Year:</dt>
-		<dd>{{ movie.productionYear }}</dd>
-		<dt>Release:</dt>
-		<dd>{{ movie.releaseDate | date }}</dd>
-	</dl>
+<dl class="app-movie-summary__details" [ngClass]="{ 'app-movie-summary__details--inline': inline }">
+	<dt>Genre:</dt>
+	<dd>{{ movie.genre }}</dd>
+	<dt>FSK:</dt>
+	<dd>{{ movie.fsk }}</dd>
+	<dt>Length:</dt>
+	<dd>{{ movie.length }} minutes</dd>
+	<dt>Production Year:</dt>
+	<dd>{{ movie.productionYear }}</dd>
+	<dt>Release:</dt>
+	<dd>{{ movie.releaseDate | date }}</dd>
+</dl>
+<div class="app-movie-summary__description" *ngIf="showDescription">
+	<h3>Description</h3>
+	<p>{{ movie.description }}</p>
 </div>

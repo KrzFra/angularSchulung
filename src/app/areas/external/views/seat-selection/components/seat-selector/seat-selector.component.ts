@@ -1,5 +1,5 @@
 import { Theater } from '@core/interfaces/theater.interface';
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
 
 @Component({
 	selector: 'app-seat-selector',
@@ -8,6 +8,8 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SeatSelectorComponent implements OnInit {
+	@HostBinding() class = 'app-seat-selector';
+
 	constructor() {}
 
 	@Input() theater: Theater;

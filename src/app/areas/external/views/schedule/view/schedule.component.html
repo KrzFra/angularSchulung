@@ -1,5 +1,7 @@
-<app-movie-schedule-overview
-	*ngFor="let movie of movies$ | async"
-	[movie]="movie"
-	[screenings]="screeningsByMovie[movie.id]"
-></app-movie-schedule-overview>
+<div class="app-content-wrapper">
+	<app-movie-schedule-overview
+		*ngFor="let movie of movies$ | async"
+		[movie]="movie"
+		[screenings]="screeningsByMovie[movie.id]"
+	></app-movie-schedule-overview>
+</div>

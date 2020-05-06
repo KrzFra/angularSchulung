@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MovieSummaryLongComponent } from './movie-summary-long.component';
+import { HeaderComponent } from './header.component';
 
-describe('MovieSummaryLongComponent', () => {
-	let component: MovieSummaryLongComponent;
-	let fixture: ComponentFixture<MovieSummaryLongComponent>;
+describe('HeaderComponent', () => {
+	let component: HeaderComponent;
+	let fixture: ComponentFixture<HeaderComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [MovieSummaryLongComponent],
+			declarations: [HeaderComponent],
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(MovieSummaryLongComponent);
+		fixture = TestBed.createComponent(HeaderComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

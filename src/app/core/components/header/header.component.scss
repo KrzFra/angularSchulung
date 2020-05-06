@@ -1,0 +1,59 @@
+@import 'constants/colors';
+
+.app-header {
+	&:host {
+		display: block;
+		position: sticky;
+		z-index: 100;
+		top: 0;
+		background-color: $colors__primary--dark;
+		margin-bottom: 2rem;
+	}
+
+	&__content-wrapper {
+		display: flex;
+	}
+
+	&__logo {
+		background-color: $colors__primary;
+		margin: 0.5rem 0;
+		padding: 0.3rem 1.5rem;
+		border-radius: 0 30px;
+		border: 3px solid $colors__primary--light;
+		color: $colors__text--light;
+		font-size: 2rem;
+	}
+
+	&__menu {
+		flex-grow: 1;
+		display: flex;
+		justify-content: right;
+		align-items: center;
+
+		&__item {
+			padding: 0.75rem;
+			margin-left: 0.25rem;
+			background-color: $colors__background--light;
+			color: $colors__text;
+			text-decoration: none;
+			background-color: $colors__background--light;
+
+			&:hover {
+				text-decoration: underline;
+			}
+
+			&:first-of-type {
+				border-bottom-left-radius: 10px;
+			}
+
+			&:last-of-type {
+				border-top-right-radius: 10px;
+			}
+
+			&--active {
+				background-color: $colors__primary--light;
+				color: $colors__text--light;
+			}
+		}
+	}
+}

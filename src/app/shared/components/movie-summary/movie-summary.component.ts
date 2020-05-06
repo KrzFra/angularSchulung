@@ -1,3 +1,4 @@
+import { MovieLong } from './../../../core/interfaces/movie.interface';
 import { Component, HostBinding, Input, ChangeDetectionStrategy } from '@angular/core';
 import { MovieShort } from '@core/interfaces/movie.interface';
 
@@ -10,5 +11,7 @@ import { MovieShort } from '@core/interfaces/movie.interface';
 export class MovieSummaryComponent {
 	@HostBinding() class = 'app-movie-summary';
 
-	@Input() movie: MovieShort;
+	@Input() movie: MovieLong;
+	@Input() showDescription = false;
+	@Input() inline = false;
 }

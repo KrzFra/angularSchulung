@@ -1,21 +1,45 @@
+@import 'constants/colors';
+
 .app-movie-summary {
 	&:host {
-		display: flex;
-		flex-direction: row;
-		border: 3px solid green;
-	}
-
-	&__poster {
-		flex: 0 1 200px;
-		margin-bottom: -4px;
-
-		> img {
-			width: 100%;
-		}
+		background: $colors__background--light;
 	}
 
 	&__details {
-		flex: 4 0 200px;
-		padding: 1em;
+		margin: 0;
+		padding: 0.75rem;
+
+		> dt {
+			margin-top: 0.5rem;
+			font-weight: bold;
+		}
+
+		> dd {
+			margin: 0 1rem;
+		}
+
+		&--inline {
+			padding: 0;
+			font-size: 0.9rem;
+
+			> dt {
+				margin: 0 0.2rem 0 0;
+				display: inline;
+			}
+
+			> dd {
+				margin: 0 0.2rem 0 0;
+				display: inline;
+
+				&:not(:last-of-type):after {
+					display: inline;
+					content: ',';
+				}
+			}
+		}
+	}
+
+	&__description {
+		padding: 0.75rem;
 	}
 }

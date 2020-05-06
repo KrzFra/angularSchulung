@@ -1,5 +1,54 @@
-.seat-selector {
+@import 'constants/colors';
+
+.app-seat-selector {
+	&:host {
+		background-color: $colors__background--light;
+		border-radius: 0 20px;
+		background-color: $colors__background--dark;
+		overflow: hidden;
+	}
+
+	&__screen {
+		position: relative;
+		width: 80%;
+		margin: 1rem auto 3rem;
+		padding-bottom: 10%;
+
+		&:before {
+			display: block;
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 30%;
+			background-color: $colors__background--light;
+			transform: skewX(30deg);
+		}
+
+		&:after {
+			display: block;
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 30%;
+			bottom: 0;
+			right: 0;
+			background-color: $colors__background--light;
+			transform: skewX(-30deg);
+		}
+	}
+
+	&__theater {
+		margin: 0;
+		padding: 1rem;
+		background-color: $colors__primary;
+		color: $colors__text--light;
+	}
+
 	&__seats {
+		margin: 3rem;
+
 		&__row {
 			display: flex;
 			margin-bottom: 20px;
@@ -8,6 +57,7 @@
 
 		&__seat {
 			width: 20px;
+			font-size: 0.6rem;
 
 			&:not(:last-of-type) {
 				margin-right: 5px;
@@ -16,19 +66,25 @@
 	}
 
 	&__legend {
+		background-color: $colors__background--light;
+		margin: 0 1rem;
+		padding: 1rem;
+		border: 3px solid $colors__primary--light;
+
 		&__row {
 			display: flex;
 			align-items: center;
-			margin-bottom: 0.5em;
+			margin-bottom: 0.5rem;
 		}
 
 		&__seat {
 			width: 20px;
+			padding-bottom: 4px;
 		}
 
 		&__label {
 			flex-grow: 1;
-			margin-left: 1em;
+			margin-left: 1rem;
 		}
 	}
 }
