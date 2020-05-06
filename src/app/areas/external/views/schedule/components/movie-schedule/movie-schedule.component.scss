@@ -7,7 +7,7 @@
 	}
 
 	&__column {
-		flex-grow: 1;
+		width: (100 / 7) + 0%;
 	}
 
 	&__header {
@@ -15,14 +15,6 @@
 		padding: 0.5rem 0;
 		color: $colors__text--light;
 		text-align: center;
-	}
-
-	&__column:first-of-type > &__header {
-		padding-left: 1rem;
-	}
-
-	&__column:last-of-type > &__header {
-		padding-right: 1rem;
 	}
 
 	&__cell {
@@ -38,13 +30,5 @@
 		&:hover {
 			text-decoration: underline;
 		}
-	}
-
-	&__column:first-of-type > &__cell {
-		margin-left: 1rem;
-	}
-
-	&__column:last-of-type > &__cell {
-		margin-right: 1rem;
 	}
 }

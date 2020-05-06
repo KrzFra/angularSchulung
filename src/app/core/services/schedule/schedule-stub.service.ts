@@ -42,7 +42,6 @@ export class ScheduleStubService {
 		}
 
 		this.scheduleSubject.next(schedules);
-		console.log(schedules);
 		this.scheduleSubject.complete();
 	}
 
