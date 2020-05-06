@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-	declarations: [MainMenuComponent],
+	declarations: [MainMenuComponent, HeaderComponent],
 	imports: [CommonModule, RouterModule],
-	exports: [MainMenuComponent],
+	exports: [HeaderComponent],
 })
 export class CoreModule {}

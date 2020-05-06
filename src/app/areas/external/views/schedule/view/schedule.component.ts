@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, HostBinding } from '@angular/core';
 import { MovieShort } from '@core/interfaces/movie.interface';
 import { MovieService } from '@core/services/movie/movie.service';
 import { ScheduleService } from '@core/services/schedule/schedule.service';
@@ -12,6 +12,8 @@ import { Screening } from '@core/interfaces/schedule.interface';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
+	@HostBinding() class = 'app-schedule';
+
 	movies$: Observable<MovieShort[]>;
 	screeningsByMovie: Record<string, Screening[]> = {};
 

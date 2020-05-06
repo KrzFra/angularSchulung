@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 
 @Component({
 	selector: 'app-reserved-seats',
@@ -7,6 +7,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReservedSeatsComponent implements OnInit {
+	@HostBinding() class = 'app-reserved-seats';
+
 	constructor() {}
 
 	ngOnInit(): void {}
