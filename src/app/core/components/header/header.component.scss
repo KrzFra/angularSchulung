@@ -4,6 +4,7 @@
 	&:host {
 		display: block;
 		position: sticky;
+		z-index: 100;
 		top: 0;
 		background-color: $colors__primary--dark;
 		margin-bottom: 2rem;

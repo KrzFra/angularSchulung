@@ -12,15 +12,23 @@
 
 	&__header {
 		background-color: $colors__primary;
-		padding: 0.5em 0;
+		padding: 0.5rem 0;
 		color: $colors__text--light;
 		text-align: center;
 	}
 
+	&__column:first-of-type > &__header {
+		padding-left: 1rem;
+	}
+
+	&__column:last-of-type > &__header {
+		padding-right: 1rem;
+	}
+
 	&__cell {
 		display: block;
-		padding: 0.5em 0;
-		margin: 0.5em 0.5em;
+		padding: 0.5rem 0;
+		margin: 0.5rem;
 		border-radius: 0 10px;
 		text-align: center;
 		color: $colors__text;
@@ -30,5 +38,13 @@
 		&:hover {
 			text-decoration: underline;
 		}
+	}
+
+	&__column:first-of-type > &__cell {
+		margin-left: 1rem;
+	}
+
+	&__column:last-of-type > &__cell {
+		margin-right: 1rem;
 	}
 }

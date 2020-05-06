@@ -8,7 +8,7 @@
 			'poster schedule' 1fr
 			'poster details' / 0fr 1fr;
 		background-color: $colors__background--light;
-		margin-bottom: 3em;
+		margin-bottom: 3rem;
 		border-radius: 0 30px;
 		overflow: hidden;
 	}
@@ -16,7 +16,7 @@
 	&__title {
 		grid-area: title;
 		margin: 0;
-		padding: 1em;
+		padding: 1rem;
 		color: $colors__text--light;
 		background-color: $colors__primary--dark;
 	}
@@ -25,7 +25,7 @@
 		grid-area: poster;
 
 		> img {
-			margin-bottom: -0.3em;
+			margin-bottom: -0.3rem;
 		}
 	}
 
@@ -35,6 +35,6 @@
 
 	&__details {
 		grid-area: details;
-		padding: 0.5em;
+		padding: 0.5rem;
 	}
 }
