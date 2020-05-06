@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
 	selector: 'app-location',
@@ -7,6 +7,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LocationComponent implements OnInit {
+	@HostBinding() class = 'app-location';
+
 	constructor() {}
 
 	ngOnInit(): void {}
