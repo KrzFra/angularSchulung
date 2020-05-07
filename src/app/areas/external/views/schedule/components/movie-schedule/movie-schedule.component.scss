@@ -1,5 +1,34 @@
-.app-movie-schedule{
-  &:host{
-    display: flex;
-  }
+@import 'constants/colors';
+
+.app-movie-schedule {
+	&:host {
+		display: flex;
+		background-color: $colors__primary--light;
+	}
+
+	&__column {
+		width: (100 / 7) + 0%;
+	}
+
+	&__header {
+		background-color: $colors__primary;
+		padding: 0.5rem 0;
+		color: $colors__text--light;
+		text-align: center;
+	}
+
+	&__cell {
+		display: block;
+		padding: 0.5rem 0;
+		margin: 0.5rem;
+		border-radius: 0 10px;
+		text-align: center;
+		color: $colors__text;
+		text-decoration: none;
+		background-color: $colors__background--light;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 }

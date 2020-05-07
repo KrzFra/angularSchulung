@@ -1,13 +1,40 @@
+@import 'constants/colors';
+
 .app-movie-schedule-overview {
 	&:host {
-		display: flex;
+		display: grid;
+		grid-template:
+			'title title'
+			'poster schedule' 1fr
+			'poster details' / 0fr 1fr;
+		background-color: $colors__background--light;
+		margin-bottom: 3rem;
+		border-radius: 0 30px;
+		overflow: hidden;
 	}
 
-	&__movie-summary {
-		flex: 1 0 400px;
+	&__title {
+		grid-area: title;
+		margin: 0;
+		padding: 1rem;
+		color: $colors__text--light;
+		background-color: $colors__primary--dark;
 	}
 
-	&__movie-schedule {
-		flex: 10;
+	&__poster {
+		grid-area: poster;
+
+		> img {
+			margin-bottom: -0.3rem;
+		}
+	}
+
+	&__schedule {
+		grid-area: schedule;
+	}
+
+	&__details {
+		grid-area: details;
+		padding: 0.5rem;
 	}
 }

@@ -12,7 +12,6 @@ export class ReservationStubService {
 	private reservations$ = this.reservationsSubject.asObservable();
 
 	constructor(private scheduleService: ScheduleService) {
-		this.scheduleService.getSchedules().subscribe(console.log);
 		this.reservationsSubject.next([]);
 		this.reservationsSubject.complete();
 	}

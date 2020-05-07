@@ -1,4 +1,13 @@
-<h2 class="app-seat-selection__title">{{ movie.title }}</h2>
-<app-movie-summary-long class="app-seat-selection__movie-summary" [movie]="movie"></app-movie-summary-long>
-<app-seat-selector class="app-seat-selection__seat-selector" [theater]="theater"></app-seat-selector>
-<app-seat-selection-summary class="app-seat-selection__seat-selection-summary"></app-seat-selection-summary>
+<div class="app-content-wrapper app-seat-selection__wrapper">
+	<h2 class="app-seat-selection__title">{{ movie.title }}</h2>
+	<div class="app-seat-selection__movie-overview">
+		<div class="app-seat-selection__poster"><img [src]="movie.posterUrl" alt="" /></div>
+		<app-movie-summary
+			class="app-seat-selection__movie-summary"
+			[movie]="movie"
+			[showDescription]="true"
+		></app-movie-summary>
+	</div>
+	<app-seat-selector class="app-seat-selection__seat-selector" [theater]="theater"></app-seat-selector>
+	<app-seat-selection-summary class="app-seat-selection__seat-selection-summary"></app-seat-selection-summary>
+</div>

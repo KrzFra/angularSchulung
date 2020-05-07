@@ -1,6 +1,10 @@
-<app-movie-summary class="app-movie-schedule-overview__movie-summary" [movie]="movie"></app-movie-summary>
+<h2 class="app-movie-schedule-overview__title">{{ movie.title }}</h2>
+<div class="app-movie-schedule-overview__poster"><img [src]="movie.posterUrl" alt="" /></div>
 <app-movie-schedule
+	class="app-movie-schedule-overview__schedule"
 	[movieId]="movie.id"
 	[screenings]="screenings"
-	class="app-movie-schedule-overview__movie-schedule"
 ></app-movie-schedule>
+<div class="app-movie-schedule-overview__details">
+	<app-movie-summary [movie]="movie" [inline]="true"></app-movie-summary>
+</div>

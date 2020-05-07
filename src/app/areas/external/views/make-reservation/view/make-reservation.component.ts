@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 
 @Component({
 	selector: 'app-make-reservation',
@@ -7,6 +7,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MakeReservationComponent implements OnInit {
+	@HostBinding() class = 'app-make-reservation';
+
 	constructor() {}
 
 	ngOnInit(): void {}
