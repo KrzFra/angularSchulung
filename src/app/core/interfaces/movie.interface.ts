@@ -12,3 +12,15 @@ export interface MovieShort {
 export interface MovieLong extends MovieShort {
 	description: string;
 }
+
+export const EMPTY_MOVIE_LONG: MovieLong = {
+	id: '',
+	title: '',
+	genre: '',
+	length: 0,
+	productionYear: 0,
+	releaseDate: 0,
+	fsk: '',
+	posterUrl: '',
+	description: '',
+};

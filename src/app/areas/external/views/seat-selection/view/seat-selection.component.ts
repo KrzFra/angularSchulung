@@ -1,3 +1,5 @@
+import { EMPTY_THEATER } from './../../../../../core/interfaces/theater.interface';
+import { EMPTY_MOVIE_LONG } from './../../../../../core/interfaces/movie.interface';
 import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieLong } from '@core/interfaces/movie.interface';
@@ -27,10 +29,10 @@ export class SeatSelectionComponent implements OnInit, OnDestroy {
 		private reservationService: ReservationService
 	) {}
 
-	movie: MovieLong;
-	screeningTime: number;
-	theater: Theater;
-	reservations: Reservation[];
+	movie: MovieLong = EMPTY_MOVIE_LONG;
+	screeningTime = 0;
+	theater: Theater = EMPTY_THEATER;
+	reservations: Reservation[] = [];
 
 	subscriptions: Subscription[] = [];
 
