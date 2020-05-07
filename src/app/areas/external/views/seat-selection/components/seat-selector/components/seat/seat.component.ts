@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, HostBinding, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-seat',
@@ -8,6 +8,8 @@ import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angula
 })
 export class SeatComponent implements OnInit {
 	@HostBinding() class = 'app-seat';
+	@Input() isReserved = false;
+	@Input() isSelected = false;
 
 	constructor() {}
 

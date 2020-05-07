@@ -16,11 +16,11 @@
 		<div class="app-seat-selector__legend__label">free</div>
 	</div>
 	<div class="app-seat-selector__legend__row">
-		<app-seat class="app-seat-selector__legend__seat"></app-seat>
+		<app-seat class="app-seat-selector__legend__seat" [isReserved]="true"></app-seat>
 		<div class="app-seat-selector__legend__label">reserved</div>
 	</div>
 	<div class="app-seat-selector__legend__row">
-		<app-seat class="app-seat-selector__legend__seat"></app-seat>
+		<app-seat class="app-seat-selector__legend__seat" [isSelected]="true"></app-seat>
 		<div class="app-seat-selector__legend__label">currently selected</div>
 	</div>
 </div>

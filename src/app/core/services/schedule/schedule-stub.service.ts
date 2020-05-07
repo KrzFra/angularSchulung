@@ -24,17 +24,17 @@ export class ScheduleStubService {
 				schedules.push(
 					{
 						time: referenceStartTime.unix() * 1000,
-						theater: Math.floor(Math.random() * 2).toString(),
+						theater: '1',
 						movie: movieId,
 					},
 					{
 						time: referenceStartTime.add(1, 'hour').add(30, 'minutes').unix() * 1000,
-						theater: Math.floor(Math.random() * 2).toString(),
+						theater: '2',
 						movie: movieId,
 					},
 					{
 						time: referenceStartTime.add(2, 'hours').add(15, 'minutes').unix() * 1000,
-						theater: Math.floor(Math.random() * 2).toString(),
+						theater: '1',
 						movie: movieId,
 					}
 				);
