@@ -6,14 +6,14 @@ import { Screening } from '@core/interfaces/schedule.interface';
 @Injectable({
 	providedIn: 'root',
 })
-export class ScheduleService {
+export class ScreeningsService {
 	constructor(private http: HttpClient) {}
 
-	getSchedules(): Observable<Screening[]> {
+	getScreenings(): Observable<Screening[]> {
 		return this.http.get<Screening[]>('/api/schedules');
 	}
 
-	getSchedule(movieId: string): Observable<Screening[]> {
+	getScreening(movieId: string): Observable<Screening[]> {
 		return this.http.get<Screening[]>(`/api/schedules/${movieId}`);
 	}
 

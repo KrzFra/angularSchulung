@@ -1,7 +1,7 @@
+import { ScreeningsService } from './../../../../../core/services/schedule/screenings.service';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, HostBinding } from '@angular/core';
 import { MovieShort } from '@core/interfaces/movie.interface';
 import { MovieService } from '@core/services/movie/movie.service';
-import { ScheduleService } from '@core/services/schedule/schedule.service';
 import { Observable, Subscription } from 'rxjs';
 import { Screening } from '@core/interfaces/schedule.interface';
 
@@ -19,13 +19,13 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
 	subscriptions: Subscription[] = [];
 
-	constructor(private movieService: MovieService, private scheduleService: ScheduleService) {}
+	constructor(private movieService: MovieService, private screeningsService: ScreeningsService) {}
 
 	ngOnInit() {
 		this.movies$ = this.movieService.getMovies();
 
 		this.subscriptions.push(
-			this.scheduleService.getSchedules().subscribe((schedules: Screening[]) => {
+			this.screeningsService.getScreenings().subscribe((schedules: Screening[]) => {
 				const schedulesByMovie: Record<string, Screening[]> = {};
 
 				for (const schedule of schedules) {

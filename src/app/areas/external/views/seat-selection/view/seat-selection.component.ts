@@ -1,14 +1,14 @@
-import { Reservation } from '@core/interfaces/reservation.interface';
-import { ReservationService } from '@core/services/reservation/reservation.service';
-import { Theater } from '@core/interfaces/theater.interface';
-import { TheaterService } from '@core/services/theater/theater.service';
-import { ScheduleService } from '@core/services/schedule/schedule.service';
 import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieLong } from '@core/interfaces/movie.interface';
+import { Reservation } from '@core/interfaces/reservation.interface';
+import { Theater } from '@core/interfaces/theater.interface';
 import { MovieService } from '@core/services/movie/movie.service';
-import { Subscription, forkJoin } from 'rxjs';
-import { map, concatMap } from 'rxjs/operators';
+import { ReservationService } from '@core/services/reservation/reservation.service';
+import { TheaterService } from '@core/services/theater/theater.service';
+import { forkJoin, Subscription } from 'rxjs';
+import { concatMap, map } from 'rxjs/operators';
+import { ScreeningsService } from './../../../../../core/services/schedule/screenings.service';
 
 @Component({
 	selector: 'app-seat-selection',
@@ -22,7 +22,7 @@ export class SeatSelectionComponent implements OnInit, OnDestroy {
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private movieService: MovieService,
-		private scheduleService: ScheduleService,
+		private screeningsService: ScreeningsService,
 		private theaterService: TheaterService,
 		private reservationService: ReservationService
 	) {}
@@ -43,7 +43,7 @@ export class SeatSelectionComponent implements OnInit, OnDestroy {
 
 					return forkJoin({
 						movie: this.movieService.getMovie(movieId),
-						theaterId: this.scheduleService.getTheaterId(movieId, this.screeningTime),
+						theaterId: this.screeningsService.getTheaterId(movieId, this.screeningTime),
 						reservations: this.reservationService.getReservationsForScreening(movieId, this.screeningTime),
 					});
 				}),
@@ -67,6 +67,6 @@ export class SeatSelectionComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		this.subscriptions.forEach(s => s.unsubscribe());
+		this.subscriptions.forEach((s) => s.unsubscribe());
 	}
 }

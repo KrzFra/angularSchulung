@@ -1,8 +1,8 @@
+import { ScreeningsService } from './../schedule/screenings.service';
 import { Injectable } from '@angular/core';
 import { Reservation } from '@core/interfaces/reservation.interface';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ScheduleService } from './../schedule/schedule.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -11,7 +11,7 @@ export class ReservationStubService {
 	private reservationsSubject = new ReplaySubject<Reservation[]>(1);
 	private reservations$ = this.reservationsSubject.asObservable();
 
-	constructor(private scheduleService: ScheduleService) {
+	constructor(private screeningsService: ScreeningsService) {
 		this.reservationsSubject.next([]);
 		this.reservationsSubject.complete();
 	}
