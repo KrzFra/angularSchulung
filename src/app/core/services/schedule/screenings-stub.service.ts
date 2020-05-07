@@ -21,18 +21,24 @@ export class ScreeningsStubService {
 			for (let i = 0; i < 7; i++) {
 				referenceStartTime.hours(12).minutes(0).add(1, 'day');
 
+				const idBase = i * 3 + 1 + (Number(movieId) - 1) * 21;
+
 				screenings.push(
 					{
+						id: idBase.toString(),
 						time: referenceStartTime.unix() * 1000,
 						theater: '1',
 						movie: movieId,
 					},
 					{
+						id: (idBase + 1).toString(),
+
 						time: referenceStartTime.add(1, 'hour').add(30, 'minutes').unix() * 1000,
 						theater: '2',
 						movie: movieId,
 					},
 					{
+						id: (idBase + 2).toString(),
 						time: referenceStartTime.add(2, 'hours').add(15, 'minutes').unix() * 1000,
 						theater: '1',
 						movie: movieId,
@@ -40,6 +46,8 @@ export class ScreeningsStubService {
 				);
 			}
 		}
+
+		console.log(screenings);
 
 		this.screeningSubject.next(screenings);
 		this.screeningSubject.complete();
