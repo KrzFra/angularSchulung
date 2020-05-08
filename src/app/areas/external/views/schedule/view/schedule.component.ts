@@ -29,7 +29,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 				const schedulesByMovie: Record<string, Screening[]> = {};
 
 				for (const schedule of schedules) {
-					const { movie } = schedule;
+					const { movieId: movie } = schedule;
 
 					if (!(movie in schedulesByMovie)) {
 						schedulesByMovie[movie] = [];

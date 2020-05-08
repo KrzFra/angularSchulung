@@ -23,6 +23,10 @@ export class TheaterStubService {
 		},
 	];
 
+	getTheaters(): Observable<Theater[]> {
+		return of(this.theaters);
+	}
+
 	getTheater(theaterID: string): Observable<Theater> {
 		return of(this.theaters.find((t) => t.id === theaterID));
 	}

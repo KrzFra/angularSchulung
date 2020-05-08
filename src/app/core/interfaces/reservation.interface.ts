@@ -1,7 +1,5 @@
 export interface Reservation {
-	id: string;
-	movie: string;
-	time: number;
+	screeningId: string;
 	row: number;
-	column: number;
+	seat: number;
 }

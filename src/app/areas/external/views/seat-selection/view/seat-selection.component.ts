@@ -1,16 +1,14 @@
-import { EMPTY_THEATER } from './../../../../../core/interfaces/theater.interface';
-import { EMPTY_MOVIE_LONG } from './../../../../../core/interfaces/movie.interface';
 import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieLong } from '@core/interfaces/movie.interface';
+import { EMPTY_MOVIE_LONG, MovieLong } from '@core/interfaces/movie.interface';
 import { Reservation } from '@core/interfaces/reservation.interface';
-import { Theater } from '@core/interfaces/theater.interface';
+import { EMPTY_THEATER, Theater } from '@core/interfaces/theater.interface';
 import { MovieService } from '@core/services/movie/movie.service';
 import { ReservationService } from '@core/services/reservation/reservation.service';
+import { ScreeningsService } from '@core/services/schedule/screenings.service';
 import { TheaterService } from '@core/services/theater/theater.service';
 import { forkJoin, Subscription } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
-import { ScreeningsService } from './../../../../../core/services/schedule/screenings.service';
 
 @Component({
 	selector: 'app-seat-selection',

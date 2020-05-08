@@ -27,27 +27,25 @@ export class ScreeningsStubService {
 					{
 						id: idBase.toString(),
 						time: referenceStartTime.unix() * 1000,
-						theater: '1',
-						movie: movieId,
+						theaterId: '1',
+						movieId: movieId,
 					},
 					{
 						id: (idBase + 1).toString(),
 
 						time: referenceStartTime.add(1, 'hour').add(30, 'minutes').unix() * 1000,
-						theater: '2',
-						movie: movieId,
+						theaterId: '2',
+						movieId: movieId,
 					},
 					{
 						id: (idBase + 2).toString(),
 						time: referenceStartTime.add(2, 'hours').add(15, 'minutes').unix() * 1000,
-						theater: '1',
-						movie: movieId,
+						theaterId: '1',
+						movieId: movieId,
 					}
 				);
 			}
 		}
-
-		console.log(screenings);
 
 		this.screeningSubject.next(screenings);
 		this.screeningSubject.complete();
@@ -58,10 +56,10 @@ export class ScreeningsStubService {
 	}
 
 	getScreening(movieId: string): Observable<Screening[]> {
-		return this.screenings$.pipe(map((ss) => ss.filter((s) => s.movie === movieId)));
+		return this.screenings$.pipe(map((ss) => ss.filter((s) => s.movieId === movieId)));
 	}
 
 	getTheaterId(movieId: string, time: number): Observable<string> {
-		return this.screenings$.pipe(map((ss) => ss.find((s) => s.movie === movieId && s.time === time).theater));
+		return this.screenings$.pipe(map((ss) => ss.find((s) => s.movieId === movieId && s.time === time).theaterId));
 	}
 }
