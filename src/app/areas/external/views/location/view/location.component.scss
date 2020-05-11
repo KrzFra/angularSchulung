@@ -1,0 +1,73 @@
+@import 'constants/colors';
+
+@mixin GridElement($gridAreaName) {
+	grid-area: $gridAreaName;
+	min-width: 400px;
+	max-width: 750px;
+	// padding: 20px;
+}
+
+@mixin header {
+	background-color: $colors__primary;
+	padding: 0.5rem 0;
+	color: $colors__text--light;
+	text-align: center;
+}
+
+@mixin cell {
+			padding: 0.5rem 0;
+			margin: 0.5rem;
+			border-radius: 0 10px;
+			text-align: center;
+			color: $colors__text;
+			text-decoration: none;
+			background-color: $colors__background--light;
+}
+
+.app-location {
+	&__aboutUs {
+	
+		&-header {
+			@include header();
+		}
+		&-cell {
+			@include cell();
+			@include GridElement(aboutUs);
+
+		}
+	}
+
+	&__description {
+		
+		&-header {
+			@include header();
+		}
+		&-cell {
+			@include cell();
+			@include GridElement(description);
+		}
+	}
+	&__grid {
+		display: grid;
+		grid-template-areas:
+			'map'
+			'description'
+			'aboutUs';
+		@media (min-width: 800px) {
+			display: grid;
+			grid-template-areas:
+				'map description'
+				'aboutUs  aboutUs';
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	&__map {
+		
+		height: 400px;
+		width: 100%;
+		&-cell {
+			@include cell();
+			@include GridElement(map);
+		}
+	}
+}
