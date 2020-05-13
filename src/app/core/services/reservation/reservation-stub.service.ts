@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Reservation } from '@core/interfaces/reservation.interface';
-import { Screening } from '@core/interfaces/schedule.interface';
+import { Screening } from '@core/interfaces/screening.interface';
 import { Theater } from '@core/interfaces/theater.interface';
 import { ScreeningsService } from '@core/services/schedule/screenings.service';
 import { TheaterService } from '@core/services/theater/theater.service';
@@ -41,9 +41,7 @@ export class ReservationStubService {
 						}
 					});
 
-					console.log(reservations);
-
-					this.reservationsSubject.next([]);
+					this.reservationsSubject.next(reservations);
 					this.reservationsSubject.complete();
 				})
 			)
@@ -54,7 +52,7 @@ export class ReservationStubService {
 		return this.reservations$;
 	}
 
-	getReservationsForScreening(screeningId: string, time: number): Observable<Reservation[]> {
+	getReservationsForScreening(screeningId: string): Observable<Reservation[]> {
 		return this.reservations$.pipe(map((res) => res.filter((re) => re.screeningId === screeningId)));
 	}
 }

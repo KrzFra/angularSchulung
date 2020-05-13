@@ -1,4 +1,4 @@
-import { Screening } from '../../interfaces/schedule.interface';
+import { Screening } from '../../interfaces/screening.interface';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { Observable, ReplaySubject } from 'rxjs';
@@ -54,11 +54,7 @@ export class ScreeningsStubService {
 		return this.screenings$;
 	}
 
-	getScreening(movieId: string): Observable<Screening[]> {
-		return this.screenings$.pipe(map((ss) => ss.filter((s) => s.movieId === movieId)));
-	}
-
-	getTheaterId(movieId: string, time: number): Observable<string> {
-		return this.screenings$.pipe(map((ss) => ss.find((s) => s.movieId === movieId && s.time === time).theaterId));
+	getScreeningById(screeningId: string): Observable<Screening> {
+		return this.screenings$.pipe(map((ss) => ss.find((s) => s.id === screeningId)));
 	}
 }

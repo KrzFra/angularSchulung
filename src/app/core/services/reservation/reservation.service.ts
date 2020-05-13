@@ -13,7 +13,7 @@ export class ReservationService {
 		return this.http.get<Reservation[]>('/api/reservations');
 	}
 
-	getReservationsForScreening(movieId: string, time: number): Observable<Reservation[]> {
-		return this.http.get<Reservation[]>(`/api/reservations/${movieId}/${time}`);
+	getReservationsForScreening(screeningId: string): Observable<Reservation[]> {
+		return this.http.get<Reservation[]>(`/api/reservations/${screeningId}`);
 	}
 }

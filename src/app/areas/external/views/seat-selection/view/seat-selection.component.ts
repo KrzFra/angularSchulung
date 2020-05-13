@@ -1,3 +1,4 @@
+import { Screening } from '@core/interfaces/screening.interface';
 import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EMPTY_MOVIE_LONG, MovieLong } from '@core/interfaces/movie.interface';
@@ -35,35 +36,37 @@ export class SeatSelectionComponent implements OnInit, OnDestroy {
 	subscriptions: Subscription[] = [];
 
 	ngOnInit(): void {
-		const subAr = this.activatedRoute.queryParams
-			.pipe(
-				concatMap((params: { 'movie-id': string; 'screening-time': string }) => {
-					const { 'movie-id': movieId, 'screening-time': screeningTimeString } = params;
-					this.screeningTime = Number(screeningTimeString);
+		this.subscriptions.push(
+			this.activatedRoute.params
+				.pipe(
+					concatMap((params: { screeningId: string }) => {
+						const { screeningId } = params;
+						console.log('screeningId', screeningId);
 
-					return forkJoin({
-						movie: this.movieService.getMovie(movieId),
-						theaterId: this.screeningsService.getTheaterId(movieId, this.screeningTime),
-						reservations: this.reservationService.getReservationsForScreening(movieId, this.screeningTime),
-					});
-				}),
-				concatMap((values: { movie: MovieLong; theaterId: string; reservations: Reservation[] }) => {
-					const { movie, theaterId, reservations } = values;
+						return this.screeningsService.getScreeningById(screeningId);
+					}),
+					concatMap((screening: Screening) => {
+						console.log('screening', screening);
 
-					this.movie = movie;
-					this.reservations = reservations;
+						return forkJoin({
+							movie: this.movieService.getMovie(screening.movieId),
+							theater: this.theaterService.getTheater(screening.theaterId),
+							reservations: this.reservationService.getReservationsForScreening(screening.id),
+						});
+					}),
+					map((values: { movie: MovieLong; theater: Theater; reservations: Reservation[] }) => {
+						const { movie, theater, reservations } = values;
 
-					return this.theaterService.getTheater(theaterId);
-				}),
-				map((theater: Theater) => {
-					this.theater = theater;
+						this.movie = movie;
+						this.reservations = reservations;
+						this.theater = theater;
 
-					console.log(this.movie, this.screeningTime, this.theater, this.reservations);
-				})
-			)
-			.subscribe();
-
-		this.subscriptions.push(subAr);
+						console.log(this.movie, this.screeningTime, this.theater, this.reservations);
+						return;
+					})
+				)
+				.subscribe()
+		);
 	}
 
 	ngOnDestroy() {

@@ -1,3 +1,4 @@
+import { Reservation } from './../../../../../../core/interfaces/reservation.interface';
 import { Theater } from '@core/interfaces/theater.interface';
 import { Component, OnInit, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
 
@@ -13,6 +14,7 @@ export class SeatSelectorComponent implements OnInit {
 	constructor() {}
 
 	@Input() theater: Theater;
+	@Input() reservations: Reservation[];
 
 	rows: number[];
 	seatsInRows: number[];
@@ -36,5 +38,9 @@ export class SeatSelectorComponent implements OnInit {
 		const rotationZ = Math.floor((1 - parabelY) * 7) * (parabelX > 0.5 ? -1 : 1);
 
 		return `translateY(${translationY}px) rotateZ(${rotationZ}deg)`;
+	}
+
+	existsReservationFor(rowId: number, seatId: number) {
+		return this.reservations.some((r) => r.row === rowId && r.seat === seatId);
 	}
 }

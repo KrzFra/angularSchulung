@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, HostBinding } fr
 import { MovieShort } from '@core/interfaces/movie.interface';
 import { MovieService } from '@core/services/movie/movie.service';
 import { Observable, Subscription } from 'rxjs';
-import { Screening } from '@core/interfaces/schedule.interface';
+import { Screening } from '@core/interfaces/screening.interface';
 
 @Component({
 	selector: 'app-schedule',
@@ -25,20 +25,20 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 		this.movies$ = this.movieService.getMovies();
 
 		this.subscriptions.push(
-			this.screeningsService.getScreenings().subscribe((schedules: Screening[]) => {
-				const schedulesByMovie: Record<string, Screening[]> = {};
+			this.screeningsService.getScreenings().subscribe((screenings: Screening[]) => {
+				const screeningsByMovie: Record<string, Screening[]> = {};
 
-				for (const schedule of schedules) {
-					const { movieId: movie } = schedule;
+				for (const screening of screenings) {
+					const { movieId: movie } = screening;
 
-					if (!(movie in schedulesByMovie)) {
-						schedulesByMovie[movie] = [];
+					if (!(movie in screeningsByMovie)) {
+						screeningsByMovie[movie] = [];
 					}
 
-					schedulesByMovie[movie].push(schedule);
+					screeningsByMovie[movie].push(screening);
 				}
 
-				this.screeningsByMovie = schedulesByMovie;
+				this.screeningsByMovie = screeningsByMovie;
 			})
 		);
 	}

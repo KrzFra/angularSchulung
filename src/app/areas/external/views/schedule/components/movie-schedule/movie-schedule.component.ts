@@ -1,11 +1,11 @@
-import { Screening } from '@core/interfaces/schedule.interface';
+import { Screening } from '@core/interfaces/screening.interface';
 import { ChangeDetectionStrategy, Component, Input, OnInit, HostBinding } from '@angular/core';
 import * as moment from 'moment';
 
 interface ScheduleByDay {
 	dateLabel: string;
 	date: string;
-	times: number[];
+	screenings: Screening[];
 }
 
 @Component({
@@ -24,33 +24,33 @@ export class MovieScheduleComponent {
 	@Input() set screenings(value: Screening[]) {
 		this._screenings = value;
 
-		this.schedulesByDay = this.generateSchedulesByDay(this.screenings);
+		this.screeningsByDay = this.generateScreeningsByDay(this.screenings);
 	}
 
 	@Input() movieId: string;
 
-	schedulesByDay: ScheduleByDay[];
+	screeningsByDay: ScheduleByDay[];
 
-	generateSchedulesByDay(screenings: Screening[]): ScheduleByDay[] {
+	generateScreeningsByDay(screenings: Screening[]): ScheduleByDay[] {
 		const screeningsByDay: ScheduleByDay[] = [];
 
 		for (let i = 0; i < 7; i++) {
 			const evaluatedDay = moment().startOf('day').add(i, 'days');
 
-			const times: number[] = [];
+			const screeningsOnThisDay: Screening[] = [];
 
 			for (const screening of screenings) {
 				const screeningTime = moment(screening.time);
 
 				if (evaluatedDay.date() === screeningTime.date()) {
-					times.push(screening.time);
+					screeningsOnThisDay.push(screening);
 				}
 			}
 
 			screeningsByDay[i] = {
 				dateLabel: this.generateDateLabel(evaluatedDay),
 				date: evaluatedDay.format('DD.MM'),
-				times,
+				screenings: screeningsOnThisDay,
 			};
 		}
 		return screeningsByDay;

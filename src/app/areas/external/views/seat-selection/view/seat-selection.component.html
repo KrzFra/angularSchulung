@@ -8,6 +8,10 @@
 			[showDescription]="true"
 		></app-movie-summary>
 	</div>
-	<app-seat-selector class="app-seat-selection__seat-selector" [theater]="theater"></app-seat-selector>
+	<app-seat-selector
+		class="app-seat-selection__seat-selector"
+		[theater]="theater"
+		[reservations]="reservations"
+	></app-seat-selector>
 	<app-seat-selection-summary class="app-seat-selection__seat-selection-summary"></app-seat-selection-summary>
 </div>
