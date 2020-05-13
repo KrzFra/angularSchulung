@@ -9,9 +9,11 @@
 		></app-movie-summary>
 	</div>
 	<app-seat-selector
-		class="app-seat-selection__seat-selector"
+    class="app-seat-selection__seat-selector"
+    [screeningId]="screeningId"
 		[theater]="theater"
-		[reservations]="reservations"
+    [reservations]="reservations"
+    (selectionsChanged)="onSelectionsChanged($event)"
 	></app-seat-selector>
 	<app-seat-selection-summary class="app-seat-selection__seat-selection-summary"></app-seat-selection-summary>
 </div>

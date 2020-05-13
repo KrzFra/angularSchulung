@@ -1,6 +1,6 @@
-import { Reservation } from './../../../../../../core/interfaces/reservation.interface';
+import { Reservation } from '@core/interfaces/reservation.interface';
 import { Theater } from '@core/interfaces/theater.interface';
-import { Component, OnInit, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, HostBinding, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'app-seat-selector',
@@ -13,6 +13,7 @@ export class SeatSelectorComponent implements OnInit {
 
 	constructor() {}
 
+	@Input() screeningId: string;
 	@Input() theater: Theater;
 	@Input() reservations: Reservation[];
 
@@ -20,6 +21,9 @@ export class SeatSelectorComponent implements OnInit {
 	seatsInRows: number[];
 
 	maxTranslation = 10;
+
+	selections: Reservation[] = [];
+	@Output() selectionsChanged = new EventEmitter<Reservation[]>();
 
 	ngOnInit(): void {
 		this.rows = Array(this.theater.rows)
@@ -42,5 +46,13 @@ export class SeatSelectorComponent implements OnInit {
 
 	existsReservationFor(rowId: number, seatId: number) {
 		return this.reservations.some((r) => r.row === rowId && r.seat === seatId);
+	}
+
+	onSeatSelectionChanged(row: number, seat: number, selection: boolean) {
+		this.selections = selection
+			? [...this.selections, { screeningId: this.screeningId, seat, row }]
+			: this.selections.filter((s) => !(s.row === row && s.seat === seat));
+
+		this.selectionsChanged.next(this.selections);
 	}
 }

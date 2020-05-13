@@ -11,6 +11,10 @@
 		border-radius: 3px;
 		box-shadow: 0 3px 0px 3px #800;
 
+		&:hover:not(&--reserved) {
+			cursor: pointer;
+		}
+
 		&--selected {
 			background-color: rgb(0, 228, 0);
 			box-shadow: 0 3px 0px 3px #080;

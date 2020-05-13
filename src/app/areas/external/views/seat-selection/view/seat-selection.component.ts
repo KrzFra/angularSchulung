@@ -28,10 +28,12 @@ export class SeatSelectionComponent implements OnInit, OnDestroy {
 		private reservationService: ReservationService
 	) {}
 
+	screeningId = '';
 	movie: MovieLong = EMPTY_MOVIE_LONG;
 	screeningTime = 0;
 	theater: Theater = EMPTY_THEATER;
 	reservations: Reservation[] = [];
+	selections: Reservation[] = [];
 
 	subscriptions: Subscription[] = [];
 
@@ -40,10 +42,9 @@ export class SeatSelectionComponent implements OnInit, OnDestroy {
 			this.activatedRoute.params
 				.pipe(
 					concatMap((params: { screeningId: string }) => {
-						const { screeningId } = params;
-						console.log('screeningId', screeningId);
+						this.screeningId = params.screeningId;
 
-						return this.screeningsService.getScreeningById(screeningId);
+						return this.screeningsService.getScreeningById(this.screeningId);
 					}),
 					concatMap((screening: Screening) => {
 						console.log('screening', screening);
@@ -71,5 +72,11 @@ export class SeatSelectionComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy() {
 		this.subscriptions.forEach((s) => s.unsubscribe());
+	}
+
+	onSelectionsChanged(selections: Reservation[]) {
+		this.selections = selections;
+
+		console.log('this.selections', this.selections);
 	}
 }
