@@ -20,8 +20,12 @@
 		padding: 0.3rem 1.5rem;
 		border-radius: 0 30px;
 		border: 3px solid $colors__primary--light;
-		color: $colors__text--light;
 		font-size: 2rem;
+
+		> a {
+			color: $colors__text--light;
+			text-decoration: none;
+		}
 	}
 
 	&__menu {

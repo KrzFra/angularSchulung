@@ -22,11 +22,11 @@ import {
 export class SeatSelectorComponent implements OnInit {
 	@HostBinding() class = 'app-seat-selector';
 
-	constructor() {}
-
 	@Input() screeningId: string;
 	@Input() theater: Theater;
 	@Input() reservations: Reservation[];
+
+	@Output() selectionsChanged = new EventEmitter<Reservation[]>();
 
 	rows: number[];
 	seatsInRows: number[];
@@ -34,7 +34,6 @@ export class SeatSelectorComponent implements OnInit {
 	maxTranslation = 10;
 
 	selections: Reservation[] = [];
-	@Output() selectionsChanged = new EventEmitter<Reservation[]>();
 
 	@ViewChildren(SeatComponent) seats: QueryList<SeatComponent>;
 
