@@ -19,11 +19,12 @@ export class SeatComponent implements OnInit {
 	@HostBinding() class = 'app-seat';
 	@Input() isReserved = false;
 	@Input() isSelected = false;
+	@Input() isUnchangeable = false;
 
 	@Output() selectionChanged = new EventEmitter<boolean>();
 
 	@HostListener('click') onClick() {
-		if (this.isReserved) {
+		if (this.isReserved || this.isUnchangeable) {
 			return;
 		}
 

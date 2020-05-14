@@ -1,6 +1,6 @@
 <div
 	class="app-seat__seat"
-	[ngClass]="{ 'app-seat__seat--reserved': isReserved, 'app-seat__seat--selected': isSelected }"
+	[ngClass]="{ 'app-seat__seat--reserved': isReserved, 'app-seat__seat--selected': isSelected, 'app-seat__seat--unchangeable': isUnchangeable }"
 >
 	<div class="app-seat__label"><ng-content></ng-content></div>
 </div>

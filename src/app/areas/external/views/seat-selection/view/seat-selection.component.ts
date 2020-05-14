@@ -47,8 +47,6 @@ export class SeatSelectionComponent implements OnInit, OnDestroy {
 						return this.screeningsService.getScreeningById(this.screeningId);
 					}),
 					concatMap((screening: Screening) => {
-						console.log('screening', screening);
-
 						return forkJoin({
 							movie: this.movieService.getMovie(screening.movieId),
 							theater: this.theaterService.getTheater(screening.theaterId),
