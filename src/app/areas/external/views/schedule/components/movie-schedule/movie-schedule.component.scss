@@ -11,19 +11,19 @@
 	}
 
 	&__header {
-		background-color: $colors__primary;
-		padding: 0.5rem 0;
+    padding: 0.5rem 0;
 		color: $colors__text--light;
 		text-align: center;
+		background-color: $colors__primary;
 	}
 
 	&__cell {
 		display: block;
-		padding: 0.5rem 0;
 		margin: 0.5rem;
 		border-radius: 0 10px;
-		text-align: center;
+		padding: 0.5rem 0;
 		color: $colors__text;
+		text-align: center;
 		text-decoration: none;
 		background-color: $colors__background--light;
 

@@ -1,9 +1,9 @@
+import { ScreeningsService } from './../../../../../core/services/schedule/screenings.service';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, HostBinding } from '@angular/core';
 import { MovieShort } from '@core/interfaces/movie.interface';
 import { MovieService } from '@core/services/movie/movie.service';
-import { ScheduleService } from '@core/services/schedule/schedule.service';
 import { Observable, Subscription } from 'rxjs';
-import { Screening } from '@core/interfaces/schedule.interface';
+import { Screening } from '@core/interfaces/screening.interface';
 
 @Component({
 	selector: 'app-schedule',
@@ -19,26 +19,26 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
 	subscriptions: Subscription[] = [];
 
-	constructor(private movieService: MovieService, private scheduleService: ScheduleService) {}
+	constructor(private movieService: MovieService, private screeningsService: ScreeningsService) {}
 
 	ngOnInit() {
 		this.movies$ = this.movieService.getMovies();
 
 		this.subscriptions.push(
-			this.scheduleService.getSchedules().subscribe((schedules: Screening[]) => {
-				const schedulesByMovie: Record<string, Screening[]> = {};
+			this.screeningsService.getScreenings().subscribe((screenings: Screening[]) => {
+				const screeningsByMovie: Record<string, Screening[]> = {};
 
-				for (const schedule of schedules) {
-					const { movie } = schedule;
+				for (const screening of screenings) {
+					const { movieId: movie } = screening;
 
-					if (!(movie in schedulesByMovie)) {
-						schedulesByMovie[movie] = [];
+					if (!(movie in screeningsByMovie)) {
+						screeningsByMovie[movie] = [];
 					}
 
-					schedulesByMovie[movie].push(schedule);
+					screeningsByMovie[movie].push(screening);
 				}
 
-				this.screeningsByMovie = schedulesByMovie;
+				this.screeningsByMovie = screeningsByMovie;
 			})
 		);
 	}

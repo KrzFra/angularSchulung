@@ -7,7 +7,7 @@ const routes: Routes = [
 		loadChildren: () => import('./views/schedule/schedule.module').then((m) => m.ScheduleModule),
 	},
 	{
-		path: 'seat-selection',
+		path: 'seat-selection/:screeningId',
 		loadChildren: () => import('./views/seat-selection/seat-selection.module').then((m) => m.SeatSelectionModule),
 	},
 	{

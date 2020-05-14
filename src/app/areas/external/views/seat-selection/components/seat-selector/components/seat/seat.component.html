@@ -1,3 +1,11 @@
-<div class="app-seat__seat">
+<div
+	class="app-seat__seat"
+	[ngClass]="{
+		'app-seat__seat--reserved': isReserved,
+		'app-seat__seat--selected': isSelected,
+		'app-seat__seat--unchangeable': isUnchangeable
+	}"
+	(click)="onClick()"
+>
 	<div class="app-seat__label"><ng-content></ng-content></div>
 </div>

@@ -1,4 +1,4 @@
-import { Screening } from '@core/interfaces/schedule.interface';
+import { Screening } from '@core/interfaces/screening.interface';
 import { MovieShort } from '@core/interfaces/movie.interface';
 import { Component, OnInit, HostBinding, Input, ChangeDetectionStrategy } from '@angular/core';
 

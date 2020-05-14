@@ -9,6 +9,10 @@ import { Observable } from 'rxjs';
 export class TheaterService {
 	constructor(private http: HttpClient) {}
 
+	getTheaters(): Observable<Theater[]> {
+		return this.http.get<Theater[]>(`/api/theaters/`);
+	}
+
 	getTheater(theaterId: string): Observable<Theater> {
 		return this.http.get<Theater>(`/api/theaters/${theaterId}`);
 	}

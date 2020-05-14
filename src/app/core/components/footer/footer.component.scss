@@ -1,0 +1,14 @@
+@import 'constants/colors';
+
+.app-footer {
+	&:host {
+		display: block;
+		margin-top: 3rem;
+		background-color: $colors__primary--dark;
+	}
+
+	&__content {
+		padding: 2rem 0;
+		color: $colors__text--light;
+	}
+}

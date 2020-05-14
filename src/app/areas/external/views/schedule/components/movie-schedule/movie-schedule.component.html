@@ -1,4 +1,4 @@
-<div class="app-movie-schedule__column" *ngFor="let scheduleByDay of schedulesByDay">
+<div class="app-movie-schedule__column" *ngFor="let scheduleByDay of screeningsByDay">
 	<div class="app-movie-schedule__header">
 		<div>{{ scheduleByDay.dateLabel }}</div>
 		<div>{{ scheduleByDay.date }}</div>
@@ -6,10 +6,9 @@
 
 	<a
 		class="app-movie-schedule__cell"
-		*ngFor="let time of scheduleByDay.times"
-		routerLink="/seat-selection"
-		[queryParams]="{ 'movie-id': movieId, 'screening-time': time }"
+		*ngFor="let screening of scheduleByDay.screenings"
+		[routerLink]="['/seat-selection/', screening.id]"
 	>
-		{{ time | date: 'shortTime' }}
+		{{ screening.time | date: 'shortTime' }}
 	</a>
 </div>
