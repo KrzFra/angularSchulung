@@ -1,6 +1,17 @@
+import { SeatComponent } from './components/seat/seat.component';
 import { Reservation } from '@core/interfaces/reservation.interface';
 import { Theater } from '@core/interfaces/theater.interface';
-import { Component, OnInit, ChangeDetectionStrategy, Input, HostBinding, Output, EventEmitter } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	ChangeDetectionStrategy,
+	Input,
+	HostBinding,
+	Output,
+	EventEmitter,
+	ViewChildren,
+	QueryList,
+} from '@angular/core';
 
 @Component({
 	selector: 'app-seat-selector',
@@ -24,6 +35,8 @@ export class SeatSelectorComponent implements OnInit {
 
 	selections: Reservation[] = [];
 	@Output() selectionsChanged = new EventEmitter<Reservation[]>();
+
+	@ViewChildren(SeatComponent) seats: QueryList<SeatComponent>;
 
 	ngOnInit(): void {
 		this.rows = Array(this.theater.rows)
@@ -54,5 +67,10 @@ export class SeatSelectorComponent implements OnInit {
 			: this.selections.filter((s) => !(s.row === row && s.seat === seat));
 
 		this.selectionsChanged.next(this.selections);
+	}
+
+	deselectSeats() {
+		this.seats.forEach((s) => s.deselect());
+		this.selections = [];
 	}
 }

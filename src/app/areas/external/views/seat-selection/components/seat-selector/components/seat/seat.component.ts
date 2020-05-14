@@ -1,12 +1,12 @@
 import {
-	Component,
-	OnInit,
-	HostBinding,
 	ChangeDetectionStrategy,
-	Input,
-	HostListener,
-	Output,
+	Component,
 	EventEmitter,
+	HostBinding,
+	HostListener,
+	Input,
+	Output,
+	ChangeDetectorRef,
 } from '@angular/core';
 
 @Component({
@@ -15,7 +15,7 @@ import {
 	styleUrls: ['./seat.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SeatComponent implements OnInit {
+export class SeatComponent {
 	@HostBinding() class = 'app-seat';
 	@Input() isReserved = false;
 	@Input() isSelected = false;
@@ -32,7 +32,12 @@ export class SeatComponent implements OnInit {
 		this.selectionChanged.next(this.isSelected);
 	}
 
-	constructor() {}
+	constructor(private changeRef: ChangeDetectorRef) {}
 
-	ngOnInit(): void {}
+	deselect() {
+		if (!this.isUnchangeable && this.isSelected) {
+			this.isSelected = false;
+			this.changeRef.markForCheck();
+		}
+	}
 }

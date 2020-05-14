@@ -2,16 +2,31 @@
 
 .app-seat-selector {
 	&:host {
+		display: grid;
+		grid-template:
+			'title title'
+			'screen screen'
+			'seats seats'
+			'legend buttons' / 1fr 1fr;
 		background-color: $colors__background--light;
 		border-radius: 0 20px;
 		background-color: $colors__background--dark;
 		overflow: hidden;
 	}
 
+	&__title {
+		grid-area: title;
+		margin: 0;
+		padding: 1rem;
+		background-color: $colors__primary;
+		color: $colors__text--light;
+	}
+
 	&__screen {
+		grid-area: screen;
 		position: relative;
 		width: 80%;
-		margin: 1rem auto 3rem;
+		margin: 3rem auto;
 		padding-bottom: 10%;
 
 		&:before {
@@ -39,15 +54,10 @@
 		}
 	}
 
-	&__theater {
-		margin: 0;
-		padding: 1rem;
-		background-color: $colors__primary;
-		color: $colors__text--light;
-	}
-
 	&__seats {
-		margin: 3rem;
+		grid-area: seats;
+		margin: 0 auto 3rem;
+		width: calc(100% - 6rem);
 
 		&__row {
 			display: flex;
@@ -66,15 +76,18 @@
 	}
 
 	&__legend {
+		grid-area: legend;
 		background-color: $colors__background--light;
-		margin: 0 1rem 2rem;
+		margin: 0 1rem 2rem 2rem;
 		padding: 1rem;
 		border: 3px solid $colors__primary--light;
+		border-radius: 0 10px;
 
 		&__row {
 			display: flex;
 			align-items: center;
 			margin-bottom: 0.5rem;
+			font-size: 0.9rem;
 		}
 
 		&__seat {
@@ -85,6 +98,26 @@
 		&__label {
 			flex-grow: 1;
 			margin-left: 1rem;
+		}
+	}
+
+	&__buttons {
+		grid-area: buttons;
+		margin: 0 2rem 2rem 1rem;
+	}
+
+	&__button {
+		display: block;
+		width: 100%;
+		background-color: $colors__primary;
+		padding: 0.3rem 1.5rem;
+		border-radius: 0 15px;
+		border: 3px solid $colors__primary--light;
+		color: $colors__text--light;
+
+		&:hover {
+			cursor: pointer;
+			background-color: $colors__primary--light;
 		}
 	}
 }
