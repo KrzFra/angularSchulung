@@ -3,6 +3,7 @@
 .app-footer {
 	&:host {
 		display: block;
+		margin-top: 3rem;
 		background-color: $colors__primary--dark;
 	}
 
