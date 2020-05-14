@@ -23,7 +23,7 @@ export class SeatComponent {
 
 	@Output() selectionChanged = new EventEmitter<boolean>();
 
-	@HostListener('click') onClick() {
+	onClick() {
 		if (this.isReserved || this.isUnchangeable) {
 			return;
 		}
