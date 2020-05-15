@@ -71,5 +71,6 @@ export class SeatSelectorComponent implements OnInit {
 	deselectSeats() {
 		this.seats.forEach((s) => s.deselect());
 		this.selections = [];
+		this.selectionsChanged.next(this.selections);
 	}
 }

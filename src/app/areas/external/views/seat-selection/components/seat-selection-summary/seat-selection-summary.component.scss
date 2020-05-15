@@ -1,0 +1,6 @@
+.app-seat-selection-summary{
+    &__seat:not(:last-of-type):after{
+        display: inline;
+        content: ', ';
+    }
+}

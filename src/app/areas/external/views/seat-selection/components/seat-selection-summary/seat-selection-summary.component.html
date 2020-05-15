@@ -1,1 +1,6 @@
-<p>seat-selection-summary works!</p>
+<h3>Your selections</h3>
+<div  *ngFor="let row of getSelectionsByRow()">
+Row: {{row.rowId}}<br/>
+Seats: <span class="app-seat-selection-summary__seat" *ngFor="let seat of row.seats">{{seat}}</span>
+</div>
+
