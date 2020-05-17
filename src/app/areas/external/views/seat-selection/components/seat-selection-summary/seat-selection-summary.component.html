@@ -1,6 +1,11 @@
-<h3>Your selections</h3>
-<div  *ngFor="let row of getSelectionsByRow()">
-Row: {{row.rowId}}<br/>
-Seats: <span class="app-seat-selection-summary__seat" *ngFor="let seat of row.seats">{{seat}}</span>
+<h3 class="app-seat-selection-summary__title">Your selections</h3>
+<div class="app-seat-selection-summary__detail">
+	<div  *ngFor="let row of getSelectionsByRow()">
+		Row: {{ row.rowId }}<br />
+		Seats: <span class="app-seat-selection-summary__seat" *ngFor="let seat of row.seats">{{ seat }}</span>
+	</div>
 </div>
 
+<div class="app-seat-selection-summary__buttons">
+	<button class="app-seat-selection-summary__button">Confirm Reservation</button>
+</div>
