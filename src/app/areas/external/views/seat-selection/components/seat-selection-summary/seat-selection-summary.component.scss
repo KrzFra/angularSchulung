@@ -1,0 +1,42 @@
+@import 'constants/colors';
+
+.app-seat-selection-summary {
+	&:host {
+		display: grid;
+		grid-template:
+			'title'
+			'details'
+			'buttons'/ 1fr;
+		background-color: $colors__background--light;
+		border-radius: 0 20px;
+		background-color: $colors__background--dark;
+		overflow: hidden;
+		padding-right: 10rem;
+	}
+	&__title {
+		grid-area: title;
+		margin: 0;
+		padding: 1rem;
+		background-color: $colors__primary;
+		color: $colors__text--light;
+	}
+	&__detail {
+		grid-area: details;
+		padding: 0 1rem 1rem 1rem;
+		color: #ffffff;
+		padding-bottom: 10px;
+		&:first-of-type {
+			padding-top: 1rem;
+		}
+		&:last-of-type {
+			padding-bottom: 2rem;
+		}
+	}
+	&__seat:not(:last-of-type):after {
+		display: inline;
+		content: ', ';
+	}
+	&__buttons {
+		grid-area: buttons;
+	}
+}
