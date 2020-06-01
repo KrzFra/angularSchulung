@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 	{
-		path: 'schedule',
+		path: '',
 		loadChildren: () => import('./views/schedule/schedule.module').then((m) => m.ScheduleModule),
 	},
 	{
@@ -24,7 +24,7 @@ const routes: Routes = [
 	},
 	{
 		path: '**',
-		redirectTo: 'schedule',
+		redirectTo: '',
 	},
 ];
 
