@@ -1,3 +1,5 @@
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -5,8 +7,8 @@ import { CoreModule } from '@core/core.module';
 import { MovieSummaryComponent } from './components/movie-summary/movie-summary.component';
 
 @NgModule({
-	declarations: [MovieSummaryComponent],
+	declarations: [FooterComponent, HeaderComponent, MovieSummaryComponent],
 	imports: [CoreModule, CommonModule, RouterModule],
-	exports: [MovieSummaryComponent],
+	exports: [FooterComponent, HeaderComponent, MovieSummaryComponent],
 })
 export class SharedModule {}
