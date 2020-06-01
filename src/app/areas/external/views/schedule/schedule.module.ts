@@ -5,7 +5,7 @@ import { SharedModule } from '@shared/shared.module';
 import { MovieScheduleOverviewComponent } from './components/movie-schedule-overview/movie-schedule-overview.component';
 import { MovieScheduleComponent } from './components/movie-schedule/movie-schedule.component';
 import { ScheduleRoutingModule } from './schedule-routing.module';
-import { ScheduleComponent } from './view/schedule.component';
+import { ScheduleComponent } from './schedule.component';
 
 @NgModule({
 	declarations: [MovieScheduleComponent, MovieScheduleOverviewComponent, ScheduleComponent],

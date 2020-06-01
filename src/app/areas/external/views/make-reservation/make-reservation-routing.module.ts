@@ -1,4 +1,4 @@
-import { MakeReservationComponent } from './view/make-reservation.component';
+import { MakeReservationComponent } from './make-reservation.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

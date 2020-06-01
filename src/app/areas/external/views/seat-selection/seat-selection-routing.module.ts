@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SeatSelectionComponent } from './view/seat-selection.component';
+import { SeatSelectionComponent } from './seat-selection.component';
 
 const routes: Routes = [
 	{

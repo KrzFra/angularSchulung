@@ -1,4 +1,4 @@
-import { ScreeningsService } from './../../../../../core/services/schedule/screenings.service';
+import { ScreeningsService } from '../../../../core/services/schedule/screenings.service';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, HostBinding } from '@angular/core';
 import { MovieShort } from '@core/interfaces/movie.interface';
 import { MovieService } from '@core/services/movie/movie.service';
