@@ -12,8 +12,10 @@
 		class="app-seat-selection__seat-selector"
 		[screening]="screening"
 		[theater]="theater"
-		[reservations]="reservations"
-		(selectionsChanged)="onSelectionsChanged($event)"
+    [reservations]="reservations"
+    [selections]="selections"
+    (seatClicked)="onSeatClicked_seatSelector($event)"
+    (resetSelection)="onResetSelection__seatSelector()"
 	></app-seat-selector>
 	<app-seat-selection-summary
 		class="app-seat-selection__seat-selection-summary"

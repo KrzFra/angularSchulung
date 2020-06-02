@@ -1,13 +1,4 @@
-import {
-	ChangeDetectionStrategy,
-	Component,
-	EventEmitter,
-	HostBinding,
-	HostListener,
-	Input,
-	Output,
-	ChangeDetectorRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-seat',
@@ -20,24 +11,4 @@ export class SeatComponent {
 	@Input() isReserved = false;
 	@Input() isSelected = false;
 	@Input() isUnchangeable = false;
-
-	@Output() selectionChanged = new EventEmitter<boolean>();
-
-	onClick() {
-		if (this.isReserved || this.isUnchangeable) {
-			return;
-		}
-
-		this.isSelected = !this.isSelected;
-		this.selectionChanged.next(this.isSelected);
-	}
-
-	constructor(private changeRef: ChangeDetectorRef) {}
-
-	deselect() {
-		if (!this.isUnchangeable && this.isSelected) {
-			this.isSelected = false;
-			this.changeRef.markForCheck();
-		}
-	}
 }

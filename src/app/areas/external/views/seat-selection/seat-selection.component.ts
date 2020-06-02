@@ -60,9 +60,34 @@ export class SeatSelectionComponent implements OnInit {
 			.subscribe();
 	}
 
-	onSelectionsChanged(selections: Reservation[]) {
-		this.selections = selections;
+	onSeatClicked_seatSelector(params: { rowId: number; seatId: number }) {
+		const { rowId, seatId } = params;
+		this._toggleSelection(rowId, seatId);
+	}
 
-		console.log('this.selections', this.selections);
+	onResetSelection__seatSelector() {
+		this._resetSelections();
+	}
+
+	private _toggleSelection(rowId: number, seatId: number) {
+		const hasSelection = this.selections.some((s) => s.row === rowId && s.seat === seatId);
+
+		if (hasSelection) {
+			this.selections = this.selections.filter((s) => !(s.row === rowId && s.seat === seatId));
+		} else {
+			const selections = [...this.selections, { screeningId: this.screening.id, row: rowId, seat: seatId }];
+
+			this.selections = selections.sort((a, b) => {
+				if (a.row === b.row) {
+					return a.seat - b.seat;
+				} else {
+					return a.row - b.row;
+				}
+			});
+		}
+	}
+
+	private _resetSelections() {
+		this.selections = [];
 	}
 }

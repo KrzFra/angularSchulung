@@ -7,9 +7,10 @@
 		<app-seat
 			class="app-seat-selector__seats__seat"
 			*ngFor="let seatId of seatsInRows"
-			[isReserved]="existsReservationFor(rowId, seatId)"
-			[style.transform]="getTransformFor(seatId)"
-			(selectionChanged)="onSeatSelectionChanged(rowId, seatId, $event)"
+			[isReserved]="reservationsPerRow[rowId][seatId]"
+			[isSelected]="selectionsPerRow[rowId][seatId]"
+			[ngStyle]="seatStyle[seatId]"
+			(click)="onClick__seat(rowId, seatId)"
 		>
 			{{ seatId }}
 		</app-seat>
@@ -30,5 +31,5 @@
 	</div>
 </div>
 <div class="app-seat-selector__buttons">
-	<button class="app-seat-selector__button" (click)="deselectSeats()">Reset Selection</button>
+	<button class="app-seat-selector__button" (click)="onClick__resetButton()">Reset Selection</button>
 </div>
