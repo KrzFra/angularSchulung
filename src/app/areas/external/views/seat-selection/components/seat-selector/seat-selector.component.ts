@@ -1,17 +1,18 @@
-import { SeatComponent } from './components/seat/seat.component';
-import { Reservation } from '@core/interfaces/reservation.interface';
-import { Theater } from '@core/interfaces/theater.interface';
 import {
-	Component,
-	OnInit,
 	ChangeDetectionStrategy,
-	Input,
-	HostBinding,
-	Output,
+	Component,
 	EventEmitter,
-	ViewChildren,
+	HostBinding,
+	Input,
+	OnInit,
+	Output,
 	QueryList,
+	ViewChildren,
 } from '@angular/core';
+import { Reservation } from '@core/interfaces/reservation.interface';
+import { Screening } from '@core/interfaces/screening.interface';
+import { Theater } from '@core/interfaces/theater.interface';
+import { SeatComponent } from './components/seat/seat.component';
 
 @Component({
 	selector: 'app-seat-selector',
@@ -22,7 +23,7 @@ import {
 export class SeatSelectorComponent implements OnInit {
 	@HostBinding() class = 'app-seat-selector';
 
-	@Input() screeningId: string;
+	@Input() screening: Screening;
 	@Input() theater: Theater;
 	@Input() reservations: Reservation[];
 
@@ -62,7 +63,7 @@ export class SeatSelectorComponent implements OnInit {
 
 	onSeatSelectionChanged(row: number, seat: number, selection: boolean) {
 		this.selections = selection
-			? [...this.selections, { screeningId: this.screeningId, seat, row }]
+			? [...this.selections, { screeningId: this.screening.id, seat, row }]
 			: this.selections.filter((s) => !(s.row === row && s.seat === seat));
 
 		this.selectionsChanged.next(this.selections);

@@ -11,39 +11,31 @@ import { Screening } from '@core/interfaces/screening.interface';
 	styleUrls: ['./schedule.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ScheduleComponent implements OnInit, OnDestroy {
+export class ScheduleComponent implements OnInit {
 	@HostBinding() class = 'app-schedule';
 
 	movies$: Observable<MovieShort[]>;
 	screeningsByMovie: Record<string, Screening[]> = {};
-
-	subscriptions: Subscription[] = [];
 
 	constructor(private movieService: MovieService, private screeningsService: ScreeningsService) {}
 
 	ngOnInit() {
 		this.movies$ = this.movieService.getMovies();
 
-		this.subscriptions.push(
-			this.screeningsService.getScreenings().subscribe((screenings: Screening[]) => {
-				const screeningsByMovie: Record<string, Screening[]> = {};
+		this.screeningsService.getScreenings().subscribe((screenings: Screening[]) => {
+			const screeningsByMovie: Record<string, Screening[]> = {};
 
-				for (const screening of screenings) {
-					const { movieId: movie } = screening;
+			for (const screening of screenings) {
+				const { movieId: movie } = screening;
 
-					if (!(movie in screeningsByMovie)) {
-						screeningsByMovie[movie] = [];
-					}
-
-					screeningsByMovie[movie].push(screening);
+				if (!(movie in screeningsByMovie)) {
+					screeningsByMovie[movie] = [];
 				}
 
-				this.screeningsByMovie = screeningsByMovie;
-			})
-		);
-	}
+				screeningsByMovie[movie].push(screening);
+			}
 
-	ngOnDestroy() {
-		this.subscriptions.forEach((s) => s.unsubscribe());
+			this.screeningsByMovie = screeningsByMovie;
+		});
 	}
 }

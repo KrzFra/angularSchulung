@@ -27,19 +27,16 @@ export class ScreeningsStubService {
 					{
 						id: idBase.toString(),
 						time: referenceStartTime.unix() * 1000,
-						theaterId: '1',
 						movieId,
 					},
 					{
 						id: (idBase + 1).toString(),
 						time: referenceStartTime.add(1, 'hour').add(30, 'minutes').unix() * 1000,
-						theaterId: '2',
 						movieId,
 					},
 					{
 						id: (idBase + 2).toString(),
 						time: referenceStartTime.add(2, 'hours').add(15, 'minutes').unix() * 1000,
-						theaterId: '1',
 						movieId,
 					}
 				);

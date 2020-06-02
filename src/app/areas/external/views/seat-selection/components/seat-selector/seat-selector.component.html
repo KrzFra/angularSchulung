@@ -1,4 +1,6 @@
-<h3 class="app-seat-selector__title">Theater: {{ theater.label }}</h3>
+<h3 class="app-seat-selector__title">
+	{{ screening.time | date: 'longDate' }} - {{ screening.time | date: 'shortTime' }}
+</h3>
 <div class="app-seat-selector__screen">screen</div>
 <div class="app-seat-selector__seats" [style.padding-bottom]="maxTranslation + 'px'">
 	<div class="app-seat-selector__seats__row" *ngFor="let rowId of rows">
@@ -8,8 +10,9 @@
 			[isReserved]="existsReservationFor(rowId, seatId)"
 			[style.transform]="getTransformFor(seatId)"
 			(selectionChanged)="onSeatSelectionChanged(rowId, seatId, $event)"
-			>{{ seatId }}</app-seat
 		>
+			{{ seatId }}
+		</app-seat>
 	</div>
 </div>
 <div class="app-seat-selector__legend">
