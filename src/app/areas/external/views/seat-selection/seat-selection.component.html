@@ -13,12 +13,13 @@
 		[screening]="screening"
 		[theater]="theater"
 		[reservations]="reservations"
-		[selections]="selections"
+		[selections]="selections$ | async"
 		(seatClicked)="onSeatClicked_seatSelector($event)"
 		(resetSelection)="onResetSelection__seatSelector()"
 	></app-seat-selector>
 	<app-seat-selection-summary
 		class="app-seat-selection__seat-selection-summary"
-		[selections]="selections"
+		[selections]="selections$ | async"
+		[screeningId]="screening.id"
 	></app-seat-selection-summary>
 </div>

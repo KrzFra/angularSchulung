@@ -48,7 +48,7 @@ export class SeatSelectorComponent implements OnInit, OnChanges {
 		this.rowsOfSeats.forEach((row) => {
 			row.seats.forEach((seat) => {
 				seat.isSelected = selections.some((s) => {
-					return s.row === row.id && s.seat === seat.id;
+					return s.rowId === row.id && s.seatId === seat.id;
 				});
 			});
 		});
@@ -76,11 +76,11 @@ export class SeatSelectorComponent implements OnInit, OnChanges {
 					id: seatId,
 					isReserved:
 						this.reservations.find((r) => {
-							return r.row === rowId && r.seat === seatId;
+							return r.rowId === rowId && r.seatId === seatId;
 						}) !== undefined,
 					isSelected:
 						this.selections.find((r) => {
-							return r.row === rowId && r.seat === seatId;
+							return r.rowId === rowId && r.seatId === seatId;
 						}) !== undefined,
 					ngStyle: this._generateSeatNgStyle(seatId),
 				});
@@ -106,7 +106,7 @@ export class SeatSelectorComponent implements OnInit, OnChanges {
 	}
 
 	existsReservationFor(rowId: number, seatId: number) {
-		return this.reservations.some((r) => r.row === rowId && r.seat === seatId);
+		return this.reservations.some((r) => r.rowId === rowId && r.seatId === seatId);
 	}
 }
 

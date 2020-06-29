@@ -1,5 +1,5 @@
 export interface Reservation {
 	screeningId: string;
-	row: number;
-	seat: number;
+	rowId: number;
+	seatId: number;
 }

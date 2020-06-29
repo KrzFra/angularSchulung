@@ -11,12 +11,10 @@
 	&__detail {
 		color: $colors__text--light;
 		margin: 0.75rem;
-	}
 
-	&__button {
-		display: block;
-		margin: 2rem 0.75rem 0.75rem;
-		width: calc(100% - 1.5rem);
+		&:last-of-type {
+			margin-bottom: 2rem;
+		}
 	}
 
 	&__seat:not(:last-of-type):after {

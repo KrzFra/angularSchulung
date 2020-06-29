@@ -26,8 +26,8 @@ export class ReservationStubService {
 								if (seat <= row) {
 									reservations.push({
 										screeningId: screening.id,
-										row,
-										seat,
+										rowId: row,
+										seatId: seat,
 									});
 								}
 							}

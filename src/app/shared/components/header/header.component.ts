@@ -1,4 +1,7 @@
-import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { ShoppingCartService } from '@core/services/shopping-cart/shopping-cart.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-header',
@@ -6,10 +9,27 @@ import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angula
 	styleUrls: ['./header.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 	@HostBinding() class = 'app-header';
 
-	constructor() {}
+	amountOfSelections = 0;
 
-	ngOnInit(): void {}
+	private _destroyed$ = new Subject<void>();
+
+	constructor(private _shoppingCartService: ShoppingCartService, private changeDetector: ChangeDetectorRef) {}
+
+	ngOnInit() {
+		this._shoppingCartService
+			.getSelectedReservations()
+			.pipe(takeUntil(this._destroyed$))
+			.subscribe((sr) => {
+				this.amountOfSelections = sr.length;
+				this.changeDetector.markForCheck();
+			});
+	}
+
+	ngOnDestroy() {
+		this._destroyed$.next();
+		this._destroyed$.complete();
+	}
 }
