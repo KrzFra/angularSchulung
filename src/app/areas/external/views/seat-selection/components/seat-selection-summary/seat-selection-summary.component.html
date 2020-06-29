@@ -1,6 +1,6 @@
 <h3 class="app-seat-selection-summary__title">Your selections</h3>
 <div class="app-seat-selection-summary__detail">
-	<div  *ngFor="let row of getSelectionsByRow()">
+	<div *ngFor="let row of getSelectionsByRow()">
 		Row: {{ row.rowId }}<br />
 		Seats: <span class="app-seat-selection-summary__seat" *ngFor="let seat of row.seats">{{ seat }}</span>
 	</div>

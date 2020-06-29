@@ -62,7 +62,7 @@ export class MovieStubService {
 	}
 
 	getMovie(movieId: string): Observable<MovieLong> {
-		const movie = this.movies.find(m => m.id === movieId);
+		const movie = this.movies.find((m) => m.id === movieId);
 		return of(movie);
 	}
 }

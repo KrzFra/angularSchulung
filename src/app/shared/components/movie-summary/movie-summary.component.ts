@@ -1,6 +1,5 @@
-import { MovieLong } from './../../../core/interfaces/movie.interface';
-import { Component, HostBinding, Input, ChangeDetectionStrategy } from '@angular/core';
-import { MovieShort } from '@core/interfaces/movie.interface';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { MovieLong } from '@core/interfaces/movie.interface';
 
 @Component({
 	selector: 'app-movie-summary',

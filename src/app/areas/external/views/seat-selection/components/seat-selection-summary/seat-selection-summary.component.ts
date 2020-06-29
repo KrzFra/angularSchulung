@@ -8,11 +8,11 @@ import { Reservation } from '@core/interfaces/reservation.interface';
 })
 export class SeatSelectionSummaryComponent {
 	@HostBinding() class = 'app-seat-selection-summary';
-	
+
 	@Input() selections: Reservation[];
 
 	getSelectionsByRow(): { rowId: number; seats: number[] }[] {
-		const selectionsByRow: {rowId: number; seats: number[] }[] = [];
+		const selectionsByRow: { rowId: number; seats: number[] }[] = [];
 
 		this.selections.forEach((reservation) => {
 			const selectionIndex = selectionsByRow.findIndex((e) => e.rowId === reservation.row);
