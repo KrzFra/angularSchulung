@@ -2,59 +2,25 @@
 
 .app-seat-selection-summary {
 	&:host {
-		display: grid;
-		grid-template:
-			'title'
-			'details'
-			'buttons'/ 1fr;
-		background-color: $colors__background--light;
+		display: block;
 		border-radius: 0 20px;
 		background-color: $colors__background--dark;
 		overflow: hidden;
-		// font-size: 0.8rem;
-		padding-right: 10rem;
 	}
-	&__detail {
-		grid-area: details;
-		padding: 0 1rem 1rem 1rem;
 
-		color: #ffffff;
-		padding-bottom: 10px;
+	&__detail {
+		color: $colors__text--light;
+		margin: 0.75rem;
 	}
-	&__detail:first-of-type {
-		padding-top: 1rem;
-	}
-	&__detail:last-of-type {
-		padding-bottom: 2rem;
-	}
+
 	&__button {
 		display: block;
-		width: 100%;
-		background-color: $colors__primary;
-		margin-top: 1.3rem;
-		padding: 0.3rem 1.5rem;
-		border-radius: 0 15px;
-		border: 3px solid $colors__primary--light;
-		color: $colors__text--light;
+		margin: 2rem 0.75rem 0.75rem;
+		width: calc(100% - 1.5rem);
+	}
 
-		&:hover {
-			cursor: pointer;
-			background-color: $colors__primary--light;
-		}
-	}
-	&__buttons {
-		grid-area: buttons;
-		margin: 0 2rem 2rem 1rem;
-	}
 	&__seat:not(:last-of-type):after {
 		display: inline;
 		content: ', ';
-	}
-	&__title {
-		grid-area: title;
-		margin: 0;
-		padding: 1rem;
-		background-color: $colors__primary;
-		color: $colors__text--light;
 	}
 }

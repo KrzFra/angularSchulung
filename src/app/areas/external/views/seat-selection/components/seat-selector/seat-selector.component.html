@@ -1,18 +1,18 @@
-<h3 class="app-seat-selector__title">
+<h3 class="app-seat-selector__title app-title-block">
 	{{ screening.time | date: 'longDate' }} - {{ screening.time | date: 'shortTime' }}
 </h3>
 <div class="app-seat-selector__screen">screen</div>
-<div class="app-seat-selector__seats" [style.padding-bottom]="maxTranslation + 'px'">
-	<div class="app-seat-selector__seats__row" *ngFor="let rowId of rows">
+<div class="app-seat-selector__seats">
+	<div class="app-seat-selector__seats__row" *ngFor="let row of rowsOfSeats">
 		<app-seat
 			class="app-seat-selector__seats__seat"
-			*ngFor="let seatId of seatsInRows"
-			[isReserved]="reservationsPerRow[rowId][seatId]"
-			[isSelected]="selectionsPerRow[rowId][seatId]"
-			[ngStyle]="seatStyle[seatId]"
-			(click)="onClick__seat(rowId, seatId)"
+			*ngFor="let seat of row.seats"
+			[isReserved]="seat.isReserved"
+			[isSelected]="seat.isSelected"
+			[ngStyle]="seat.ngStyle"
+			(click)="onClick__seat(row.id, seat.id)"
 		>
-			{{ seatId }}
+			{{ seat.id }}
 		</app-seat>
 	</div>
 </div>
@@ -31,5 +31,5 @@
 	</div>
 </div>
 <div class="app-seat-selector__buttons">
-	<button class="app-seat-selector__button" (click)="onClick__resetButton()">Reset Selection</button>
+	<button class="app-seat-selector__button app-button" (click)="onClick__resetButton()">Reset Selection</button>
 </div>

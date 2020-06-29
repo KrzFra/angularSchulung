@@ -30,93 +30,94 @@ export class SeatSelectorComponent implements OnInit, OnChanges {
 	@Output() seatClicked = new EventEmitter<{ rowId: number; seatId: number }>();
 	@Output() resetSelection = new EventEmitter<void>();
 
-	rows: number[];
-	seatsInRows: number[];
-
-	selectionsPerRow: Record<number, Record<number, boolean>>;
-	reservationsPerRow: Record<number, Record<number, boolean>>;
+	rowsOfSeats: RowData[] = [];
 
 	seatStyle: Record<number, Record<string, string>>;
 
-	maxTranslation = 10;
-
 	ngOnInit() {
-		this._setSeatStyling();
-		this._setReservationsPerRow(this.reservations);
+		this._setSeats();
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		console.log('ngOnChangs');
-		if (changes.theater) {
-			this._setPropertiesFromTheater(changes.theater.currentValue);
-		}
 		if (changes.selections) {
-			this._setSelectionsPerRow(changes.selections.currentValue);
+			this._onChange_selections(changes.selections.currentValue);
 		}
+	}
+
+	private _onChange_selections(selections: Reservation[]) {
+		this.rowsOfSeats.forEach((row) => {
+			row.seats.forEach((seat) => {
+				seat.isSelected = selections.some((s) => {
+					return s.row === row.id && s.seat === seat.id;
+				});
+			});
+		});
 	}
 
 	onClick__seat(rowId: number, seatId: number) {
 		this.seatClicked.next({ rowId, seatId });
 	}
 
-	private _setPropertiesFromTheater(theaterParam: Theater) {
-		this.rows = Array(theaterParam.rows)
-			.fill(undefined)
-			.map((_, i) => i + 1);
-		this.seatsInRows = Array(theaterParam.seatsInRows)
-			.fill(undefined)
-			.map((_, i) => i + 1);
-	}
-
 	onClick__resetButton() {
 		this.resetSelection.next();
 	}
 
-	private _setSelectionsPerRow(selections: Reservation[]) {
-		const selectionsPerRow: Record<number, Record<number, boolean>> = {};
+	private _setSeats() {
+		const rowsOfSeats: RowData[] = [];
 
-		for (const row of this.rows) {
-			selectionsPerRow[row] = {};
-			for (const seat of this.seatsInRows) {
-				selectionsPerRow[row][seat] = selections.some((s) => s.row === row && s.seat === seat);
+		for (let rowId = 1; rowId <= this.theater.rows; rowId++) {
+			const row: RowData = {
+				id: rowId,
+				seats: [],
+			};
+
+			for (let seatId = 1; seatId <= this.theater.seatsInRows; seatId++) {
+				row.seats.push({
+					id: seatId,
+					isReserved:
+						this.reservations.find((r) => {
+							return r.row === rowId && r.seat === seatId;
+						}) !== undefined,
+					isSelected:
+						this.selections.find((r) => {
+							return r.row === rowId && r.seat === seatId;
+						}) !== undefined,
+					ngStyle: this._generateSeatNgStyle(seatId),
+				});
 			}
+
+			rowsOfSeats.push(row);
 		}
 
-		this.selectionsPerRow = selectionsPerRow;
+		this.rowsOfSeats = rowsOfSeats;
 	}
 
-	private _setReservationsPerRow(reservations: Reservation[]) {
-		const reservationsPerRow: Record<number, Record<number, boolean>> = {};
+	private _generateSeatNgStyle(seatId: number): {} {
+		const parabelX = (seatId - 1) / this.theater.seatsInRows;
 
-		for (const row of this.rows) {
-			reservationsPerRow[row] = {};
-			for (const seat of this.seatsInRows) {
-				reservationsPerRow[row][seat] = reservations.some((s) => s.row === row && s.seat === seat);
-			}
-		}
+		const parabelY = -4 * parabelX ** 2 + 4 * parabelX; // parabel with constrictions: [0,0], [0.5,1], [1,0]
 
-		this.reservationsPerRow = reservationsPerRow;
-	}
+		const translationY = Math.ceil(parabelY * 10);
+		const rotationZ = Math.floor((1 - parabelY) * 7) * (parabelX > 0.5 ? -1 : 1);
 
-	private _setSeatStyling() {
-		const seatStyle = {};
+		const transform = `translateY(${translationY}px) rotateZ(${rotationZ}deg)`;
 
-		for (const seat of this.seatsInRows) {
-			const parabelX = (seat - 1) / this.theater.seatsInRows;
-			const parabelY = -4 * parabelX ** 2 + 4 * parabelX; // parabel with constrictions: [0,0], [0.5,1], [1,0]
-
-			const translationY = Math.ceil(parabelY * this.maxTranslation);
-			const rotationZ = Math.floor((1 - parabelY) * 7) * (parabelX > 0.5 ? -1 : 1);
-
-			const transform = `translateY(${translationY}px) rotateZ(${rotationZ}deg)`;
-
-			seatStyle[seat] = { transform };
-		}
-
-		this.seatStyle = seatStyle;
+		return { transform };
 	}
 
 	existsReservationFor(rowId: number, seatId: number) {
 		return this.reservations.some((r) => r.row === rowId && r.seat === seatId);
 	}
+}
+
+interface RowData {
+	id: number;
+	seats: SeatData[];
+}
+
+interface SeatData {
+	id: number;
+	isReserved: boolean;
+	isSelected: boolean;
+	ngStyle: {};
 }

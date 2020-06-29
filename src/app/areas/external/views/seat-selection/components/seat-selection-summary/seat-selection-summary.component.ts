@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Reservation } from '@core/interfaces/reservation.interface';
 
 @Component({
@@ -6,15 +6,25 @@ import { Reservation } from '@core/interfaces/reservation.interface';
 	templateUrl: './seat-selection-summary.component.html',
 	styleUrls: ['./seat-selection-summary.component.scss'],
 })
-export class SeatSelectionSummaryComponent {
+export class SeatSelectionSummaryComponent implements OnChanges {
 	@HostBinding() class = 'app-seat-selection-summary';
 
 	@Input() selections: Reservation[];
 
-	getSelectionsByRow(): { rowId: number; seats: number[] }[] {
+	@Output() updateCart = new EventEmitter<void>();
+
+	selectionsByRow: { rowId: number; seats: number[] }[] = [];
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes.selections && changes.selections.currentValue) {
+			this._onChanges_selections(changes.selections.currentValue);
+		}
+	}
+
+	private _onChanges_selections(selections: Reservation[]) {
 		const selectionsByRow: { rowId: number; seats: number[] }[] = [];
 
-		this.selections.forEach((reservation) => {
+		selections.forEach((reservation) => {
 			const selectionIndex = selectionsByRow.findIndex((e) => e.rowId === reservation.row);
 
 			if (selectionIndex !== -1) {
@@ -27,6 +37,8 @@ export class SeatSelectionSummaryComponent {
 			}
 		});
 
-		return selectionsByRow;
+		this.selectionsByRow = selectionsByRow;
 	}
+
+	onClick_updateCartButton() {}
 }

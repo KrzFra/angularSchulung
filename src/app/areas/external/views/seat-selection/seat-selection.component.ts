@@ -8,6 +8,7 @@ import { Theater } from '@core/interfaces/theater.interface';
 import { MovieService } from '@core/services/movie/movie.service';
 import { ReservationService } from '@core/services/reservation/reservation.service';
 import { ScreeningsService } from '@core/services/schedule/screenings.service';
+import { ShoppingCartService } from '@core/services/shopping-cart/shopping-cart.service';
 import { forkJoin } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
 
@@ -24,7 +25,8 @@ export class SeatSelectionComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private movieService: MovieService,
 		private screeningsService: ScreeningsService,
-		private reservationService: ReservationService
+		private reservationService: ReservationService,
+		private shoppingCartService: ShoppingCartService
 	) {}
 
 	movie: MovieLong = EMPTY_MOVIE_LONG;
