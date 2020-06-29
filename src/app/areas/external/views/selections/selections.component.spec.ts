@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MakeReservationComponent } from './make-reservation.component';
+import { SelectionsComponent } from './selections.component';
 
-describe('MakeReservationComponent', () => {
-	let component: MakeReservationComponent;
-	let fixture: ComponentFixture<MakeReservationComponent>;
+describe('SelectionsComponent', () => {
+	let component: SelectionsComponent;
+	let fixture: ComponentFixture<SelectionsComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [MakeReservationComponent],
+			declarations: [SelectionsComponent],
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(MakeReservationComponent);
+		fixture = TestBed.createComponent(SelectionsComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

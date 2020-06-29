@@ -7,4 +7,4 @@ import { ReservedSeatsComponent } from './views/reserved-seats/reserved-seats.co
 	declarations: [ReservedSeatsComponent],
 	imports: [CommonModule, InternalRoutingModule],
 })
-export class InternalModule {}
+export class AppInternalModule {}
