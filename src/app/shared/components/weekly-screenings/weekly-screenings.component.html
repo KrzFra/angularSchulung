@@ -1,0 +1,14 @@
+<div class="app-weekly-screenings__column" *ngFor="let screeningsThisDay of screeningsThisWeek">
+	<div class="app-weekly-screenings__header">
+		<div>{{ screeningsThisDay.dateLabel }}</div>
+		<div>{{ screeningsThisDay.date }}</div>
+	</div>
+
+	<a
+		class="app-weekly-screenings__cell"
+		*ngFor="let screening of screeningsThisDay.screenings"
+		[routerLink]="['/seat-selection/', screening.id]"
+	>
+		{{ screening.time | date: 'shortTime' }}
+	</a>
+</div>

@@ -1,12 +1,11 @@
 @import 'constants/colors';
 
-.app-movie-schedule-overview {
+.app-movie-card {
 	&:host {
 		display: grid;
 		grid-template:
 			'title title'
-			'poster schedule' 1fr
-			'poster details' / 0fr 1fr;
+			'poster content' 1fr / 0fr 1fr;
 		background-color: $colors__background--light;
 		margin-bottom: 3rem;
 		border-radius: 0 30px;
@@ -29,12 +28,7 @@
 		}
 	}
 
-	&__schedule {
-		grid-area: schedule;
-	}
-
-	&__details {
-		grid-area: details;
-		padding: 0.5rem;
+	&__content {
+		position: relative;
 	}
 }

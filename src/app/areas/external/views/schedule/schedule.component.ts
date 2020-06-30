@@ -1,9 +1,10 @@
-import { ScreeningsService } from '../../../../core/services/schedule/screenings.service';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 import { MovieShort } from '@core/interfaces/movie.interface';
-import { MovieService } from '@core/services/movie/movie.service';
-import { Observable, Subscription } from 'rxjs';
 import { Screening } from '@core/interfaces/screening.interface';
+import { MovieService } from '@core/services/movie/movie.service';
+import { ScreeningsService } from '@core/services/schedule/screenings.service';
+import { forkJoin, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-schedule',
@@ -14,28 +15,27 @@ import { Screening } from '@core/interfaces/screening.interface';
 export class ScheduleComponent implements OnInit {
 	@HostBinding() class = 'app-schedule';
 
-	movies$: Observable<MovieShort[]>;
-	screeningsByMovie: Record<string, Screening[]> = {};
+	moviesWithScreenings$: Observable<MovieWithScreenings[]>;
 
 	constructor(private movieService: MovieService, private screeningsService: ScreeningsService) {}
 
 	ngOnInit() {
-		this.movies$ = this.movieService.getMovies();
+		this.moviesWithScreenings$ = forkJoin([this.movieService.getMovies(), this.screeningsService.getScreenings()]).pipe(
+			map((params: [MovieShort[], Screening[]]) => {
+				const [movies, screenings] = params;
 
-		this.screeningsService.getScreenings().subscribe((screenings: Screening[]) => {
-			const screeningsByMovie: Record<string, Screening[]> = {};
-
-			for (const screening of screenings) {
-				const { movieId: movie } = screening;
-
-				if (!(movie in screeningsByMovie)) {
-					screeningsByMovie[movie] = [];
-				}
-
-				screeningsByMovie[movie].push(screening);
-			}
-
-			this.screeningsByMovie = screeningsByMovie;
-		});
+				return movies.map((movie) => {
+					return {
+						movie,
+						screenings: screenings.filter((s) => s.movieId === movie.id),
+					};
+				});
+			})
+		);
 	}
+}
+
+interface MovieWithScreenings {
+	movie: MovieShort;
+	screenings: Screening[];
 }

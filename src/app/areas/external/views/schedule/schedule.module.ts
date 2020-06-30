@@ -1,13 +1,19 @@
-import { AppMovieSummaryModule } from '@shared/components/movie-summary/movie-summary.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MovieScheduleOverviewComponent } from './components/movie-schedule-overview/movie-schedule-overview.component';
-import { MovieScheduleComponent } from './components/movie-schedule/movie-schedule.component';
-import { AppScheduleRoutingModule } from './schedule-routing.module';
+import { AppMovieCardModule } from '@shared/components/movie-card/movie-card.module';
+import { AppMovieSummaryLineModule } from '@shared/components/movie-summary-line/movie-summary-line.module';
+import { AppWeeklyScreeningsModule } from '@shared/components/weekly-screenings/weekly-screenings.module';
+import { AppScheduleRoutingModule } from './schedule.routing.module';
 import { ScheduleComponent } from './schedule.component';
 
 @NgModule({
-	declarations: [MovieScheduleComponent, MovieScheduleOverviewComponent, ScheduleComponent],
-	imports: [AppMovieSummaryModule, CommonModule, AppScheduleRoutingModule],
+	declarations: [ScheduleComponent],
+	imports: [
+		AppMovieCardModule,
+		AppMovieSummaryLineModule,
+		AppScheduleRoutingModule,
+		AppWeeklyScreeningsModule,
+		CommonModule,
+	],
 })
 export class AppScheduleModule {}

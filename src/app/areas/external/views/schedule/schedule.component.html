@@ -1,7 +1,24 @@
 <div class="app-content-wrapper">
-	<app-movie-schedule-overview
-		*ngFor="let movie of movies$ | async"
-		[movie]="movie"
-		[screenings]="screeningsByMovie[movie.id]"
-	></app-movie-schedule-overview>
+	<div *ngIf="moviesWithScreenings$ | async as moviesWithScreenings; else loading">
+		<app-movie-card
+			class="app-schedule__movie-card"
+			*ngFor="let movieWithScreening of moviesWithScreenings$ | async"
+			[movie]="movieWithScreening.movie"
+		>
+			<div class="app-schedule__movie-card__content-wrapper">
+				<app-weekly-screenings
+					class="app-schedule__weekly-screenings"
+					[screenings]="movieWithScreening.screenings"
+				></app-weekly-screenings>
+				<app-movie-summary-line
+					class="app-schedule__summary-line"
+					[movie]="movieWithScreening.movie"
+				></app-movie-summary-line>
+			</div>
+		</app-movie-card>
+	</div>
 </div>
+
+<ng-template #loading>
+  ...loading schedule
+</ng-template>
