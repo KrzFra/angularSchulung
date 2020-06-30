@@ -4,7 +4,7 @@ import { AppMovieSummaryModule } from '@shared/components/movie-summary/movie-su
 import { SeatSelectionSummaryComponent } from './components/seat-selection-summary/seat-selection-summary.component';
 import { SeatComponent } from './components/seat-selector/components/seat/seat.component';
 import { SeatSelectorComponent } from './components/seat-selector/seat-selector.component';
-import { AppSeatSelectionRoutingModule } from './seat-selection-routing.module';
+import { AppSeatSelectionRoutingModule } from './seat-selection.routing.module';
 import { SeatSelectionComponent } from './seat-selection.component';
 
 @NgModule({

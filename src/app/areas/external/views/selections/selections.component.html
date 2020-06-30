@@ -1,1 +1,17 @@
-<p>selections works!</p>
+<div class="app-content-wrapper">
+	<div *ngIf="(selectionsByScreening$ | async)?.length === 0">
+		No Selections
+	</div>
+	<div *ngIf="(selectionsByScreening$ | async)?.length > 0">
+		<div *ngFor="let selectionByScreening of selectionsByScreening$ | async">
+			<div>
+				{{ selectionByScreening.movie.title }}
+				<img [src]="selectionByScreening.movie.posterUrl" alt="" />
+			</div>
+			<div *ngFor="let screenig of selectionByScreening.screenings">
+				{{ screenig.screening.time | date }}
+				<div *ngFor="let selection of screenig.selections">{{ selection.rowId }} {{ selection.seatId }}</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,15 +1,14 @@
-import { Screening } from '../../interfaces/screening.interface';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Screening } from '../../interfaces/screening.interface';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class ScreeningsStubService {
 	private screeningSubject = new ReplaySubject<Screening[]>(1);
-	private screenings$ = this.screeningSubject.asObservable();
 
 	constructor() {
 		const movieIds = ['1', '2', '3'];
@@ -48,10 +47,10 @@ export class ScreeningsStubService {
 	}
 
 	getScreenings(): Observable<Screening[]> {
-		return this.screenings$;
+		return this.screeningSubject;
 	}
 
 	getScreeningById(screeningId: string): Observable<Screening> {
-		return this.screenings$.pipe(map((ss) => ss.find((s) => s.id === screeningId)));
+		return this.screeningSubject.pipe(map((ss) => ss.find((s) => s.id === screeningId)));
 	}
 }
