@@ -1,3 +1,4 @@
+import { Screening } from './../../../../core/interfaces/screening.interface';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { MovieShort } from '@core/interfaces/movie.interface';
 import { Reservation } from '@core/interfaces/reservation.interface';
@@ -33,27 +34,29 @@ export class SelectionsComponent implements OnInit {
 			map((params: [Reservation[], Screening[], MovieShort[]]) => {
 				const [selections, screenings, movies] = params;
 
-				const selectionsByScreening: MoviesScreeningsSelections[] = [];
+				const moviesScreeningsSelections: MoviesScreeningsSelections[] = [];
 
 				selections.forEach((selection) => {
 					const screening = screenings.find((s) => s.id === selection.screeningId);
 					const movie = movies.find((m) => m.id === screening.movieId);
 
-					const foundMovieSelection: MoviesScreeningsSelections = selectionsByScreening.find((sbs) => sbs.movie.id === movie.id);
+					const foundMovie: MoviesScreeningsSelections = moviesScreeningsSelections.find(
+						(sbs) => sbs.movie.id === movie.id
+					);
 
-					if (foundMovieSelection) {
-						const foundScreening = foundMovieSelection.screenings.find((s) => s.screening.id === screening.id);
+					if (foundMovie) {
+						const foundScreening = foundMovie.screenings.find((s) => s.screening.id === screening.id);
 
 						if (foundScreening) {
 							foundScreening.selections.push(selection);
 						} else {
-							foundMovieSelection.screenings.push({
+							foundMovie.screenings.push({
 								screening,
 								selections: [selection],
 							});
 						}
 					} else {
-						selectionsByScreening.push({
+						moviesScreeningsSelections.push({
 							movie,
 							screenings: [
 								{
@@ -65,9 +68,9 @@ export class SelectionsComponent implements OnInit {
 					}
 				});
 
-				console.log(selectionsByScreening);
+				moviesScreeningsSelections.forEach((mss) => mss.screenings.sort((a, b) => a.screening.time - b.screening.time));
 
-				return selectionsByScreening;
+				return moviesScreeningsSelections;
 			})
 		);
 	}

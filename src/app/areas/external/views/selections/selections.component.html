@@ -1,22 +1,29 @@
 <div class="app-content-wrapper">
-	<div *ngIf="(moviesScreeningsSelections$ | async)?.length > 0; else noSelections">
+	<ng-container *ngIf="(moviesScreeningsSelections$ | async)?.length > 0; else noSelections">
 		<div *ngFor="let movieScreeningsSelections of moviesScreeningsSelections$ | async">
 			<app-movie-card [movie]="movieScreeningsSelections.movie">
 				<div
 					class="app-selections__screening-row"
 					*ngFor="let screeningSelections of movieScreeningsSelections.screenings"
 				>
-					<div>
-						<a [routerLink]="'/seat-selection/' + screeningSelections.screening.id">
-							{{ screeningSelections.screening.time | date: 'mediumDate' }}
-							{{ screeningSelections.screening.time | date: 'shortTime' }}
-						</a>
+					<a
+						class="app-selections__date-button app-a-block"
+						[routerLink]="'/seat-selection/' + screeningSelections.screening.id"
+					>
+						{{ screeningSelections.screening.time | date: 'mediumDate' }}
+						{{ screeningSelections.screening.time | date: 'shortTime' }}
+					</a>
+					<div class="app-selections__sum">
+						{{ screeningSelections.selections.length }} Selection{{
+							screeningSelections.selections.length > 1 ? 's' : ''
+						}}:<br />
+						{{ screeningSelections.selections | reservationsToString }}
 					</div>
-					<div>{{ screeningSelections.selections | reservationsToString }}</div>
+					<div class="app-selections__selections-row"></div>
 				</div>
 			</app-movie-card>
 		</div>
-	</div>
+	</ng-container>
 </div>
 
 <ng-template #noSelections>
