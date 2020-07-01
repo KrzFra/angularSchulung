@@ -1,0 +1,23 @@
+@import 'constants/colors';
+
+.app-selections-summary {
+	&:host {
+		display: block;
+	}
+
+	&__screening-row {
+		display: flex;
+		align-items: center;
+		background-color: $colors__primary--light;
+		border-bottom: 1px solid $colors__background--light;
+	}
+
+	&__date-button {
+		min-width: 9rem;
+	}
+
+	&__selections {
+		padding: 0.5rem;
+		color: $colors__text--light;
+	}
+}

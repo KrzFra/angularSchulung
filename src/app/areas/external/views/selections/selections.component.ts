@@ -1,4 +1,3 @@
-import { Screening } from './../../../../core/interfaces/screening.interface';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { MovieShort } from '@core/interfaces/movie.interface';
 import { Reservation } from '@core/interfaces/reservation.interface';

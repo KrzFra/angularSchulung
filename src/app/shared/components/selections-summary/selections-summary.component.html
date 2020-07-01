@@ -1,0 +1,15 @@
+<div class="app-selections-summary__screening-row" *ngFor="let screeningSelections of screeningsSelections">
+	<a
+		class="app-selections-summary__date-button app-a-block"
+		[routerLink]="'/seat-selection/' + screeningSelections.screening.id"
+	>
+		{{ screeningSelections.screening.time | date: 'mediumDate' }}
+		{{ screeningSelections.screening.time | date: 'shortTime' }}
+	</a>
+	<div class="app-selections-summary__selections">
+		{{ screeningSelections.selections.length }}&nbsp;Selection{{
+			screeningSelections.selections.length > 1 ? 's' : ''
+		}}:<br />
+		{{ screeningSelections.selections | reservationsToString }}
+	</div>
+</div>

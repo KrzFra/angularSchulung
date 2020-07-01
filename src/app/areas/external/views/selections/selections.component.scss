@@ -4,21 +4,4 @@
 	&:host {
 		display: block;
 	}
-
-	&__sum {
-		padding: 0 0.5rem;
-		color: $colors__text--light;
-	}
-
-	&__screening-row {
-		display: flex;
-		align-items: center;
-		background-color: $colors__primary--light;
-		border-bottom: 1px solid $colors__background--light;
-	}
-
-	&__selections-row {
-		flex-grow: 1;
-		color: $colors__text--light;
-	}
 }
