@@ -1,0 +1,32 @@
+@import 'constants/colors';
+
+.app-reservation-form {
+	&:host {
+		display: block;
+	}
+
+	&__label {
+		display: block;
+		font-weight: bold;
+		color: $colors__primary--dark;
+		margin-bottom: 0.5rem;
+	}
+
+	&__input {
+		display: block;
+		width: 100%;
+		margin-bottom: 1rem;
+		padding: 1rem;
+		border-radius: 0 15px;
+		border: 1px solid $colors__primary;
+
+		&.ng-invalid.ng-touched {
+			border-color: $colors__secondary;
+		}
+	}
+
+	&__submit-button {
+		width: 100%;
+		font-size: 1.5rem;
+	}
+}

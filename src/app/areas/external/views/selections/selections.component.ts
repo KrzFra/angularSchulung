@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { onSubmit_reservationForm } from '@core/events/onSubmit_reservationForm';
 import { MovieShort } from '@core/interfaces/movie.interface';
 import { Reservation } from '@core/interfaces/reservation.interface';
 import { Screening } from '@core/interfaces/screening.interface';
@@ -72,6 +73,10 @@ export class SelectionsComponent implements OnInit {
 				return moviesScreeningsSelections;
 			})
 		);
+	}
+
+	onSubmit__reservationForm(event: onSubmit_reservationForm) {
+		console.log(event);
 	}
 }
 

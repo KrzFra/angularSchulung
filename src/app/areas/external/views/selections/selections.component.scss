@@ -4,4 +4,24 @@
 	&:host {
 		display: block;
 	}
+
+	&__wrapper {
+		display: grid;
+		grid-template:
+			'title title'
+			'selections form' / 2fr 1fr;
+		column-gap: 1rem;
+	}
+
+	&__title {
+		grid-area: title;
+	}
+
+	&__movie-card-container {
+		grid-area: selections;
+	}
+
+	&__reservation-form {
+		grid-area: form;
+	}
 }

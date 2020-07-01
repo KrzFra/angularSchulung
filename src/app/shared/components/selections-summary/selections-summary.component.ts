@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Reservation } from '@core/interfaces/reservation.interface';
 import { Screening } from '@core/interfaces/screening.interface';
 
@@ -6,6 +6,7 @@ import { Screening } from '@core/interfaces/screening.interface';
 	selector: 'app-selections-summary',
 	templateUrl: './selections-summary.component.html',
 	styleUrls: ['./selections-summary.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectionsSummaryComponent {
 	@Input() screeningsSelections: ScreeningSelections[];
