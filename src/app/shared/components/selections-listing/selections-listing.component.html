@@ -1,0 +1,6 @@
+<h3 class="app-selections-listing__title app-title-block">{{ selections.length }} Selections</h3>
+
+<div class="app-selections-listing__detail" *ngFor="let row of selectionsByRow">
+	{{ row.rowId - 1 | toLetter }}:
+	<span class="app-selections-listing__seat" *ngFor="let seat of row.seats">{{ seat }}</span>
+</div>

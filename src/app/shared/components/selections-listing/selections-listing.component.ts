@@ -2,12 +2,12 @@ import { Component, HostBinding, Input, OnChanges, SimpleChanges } from '@angula
 import { Reservation } from '@core/interfaces/reservation.interface';
 
 @Component({
-	selector: 'app-seat-selection-summary',
-	templateUrl: './seat-selection-summary.component.html',
-	styleUrls: ['./seat-selection-summary.component.scss'],
+	selector: 'app-selections-listing',
+	templateUrl: './selections-listing.component.html',
+	styleUrls: ['./selections-listing.component.scss'],
 })
-export class SeatSelectionSummaryComponent implements OnChanges {
-	@HostBinding() class = 'app-seat-selection-summary';
+export class SelectionsListingComponent implements OnChanges {
+	@HostBinding() class = 'app-selections-listing';
 
 	@Input() selections: Reservation[];
 	@Input() screeningId: string;
