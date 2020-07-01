@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AppLoginRoutingModule } from './login-routing.module';
+import { AppLoginRoutingModule } from './login.routing.module';
 import { LoginComponent } from './login.component';
 
 @NgModule({
