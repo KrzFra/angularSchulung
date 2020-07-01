@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
 	providedIn: 'root',
 })
-export class ShoppingCartService {
+export class SelectionsService {
 	selectedReservations = new BehaviorSubject<Reservation[]>([]);
 
 	getSelectedReservations(): BehaviorSubject<Reservation[]> {

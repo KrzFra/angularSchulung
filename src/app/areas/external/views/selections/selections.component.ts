@@ -4,7 +4,7 @@ import { Reservation } from '@core/interfaces/reservation.interface';
 import { Screening } from '@core/interfaces/screening.interface';
 import { MovieService } from '@core/services/movie/movie.service';
 import { ScreeningsService } from '@core/services/schedule/screenings.service';
-import { ShoppingCartService } from '@core/services/shopping-cart/shopping-cart.service';
+import { SelectionsService } from '@core/services/selections/selections.service';
 import { Observable, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -16,30 +16,30 @@ import { map } from 'rxjs/operators';
 export class SelectionsComponent implements OnInit {
 	@HostBinding() class = 'app-selections';
 
-	selectionsByScreening$: Observable<MovieSelections[]>;
+	moviesScreeningsSelections$: Observable<MoviesScreeningsSelections[]>;
 
 	constructor(
-		private shoppingCartService: ShoppingCartService,
-		private movieService: MovieService,
-		private screeningsService: ScreeningsService
+		private _selectionsService: SelectionsService,
+		private _movieService: MovieService,
+		private _screeningsService: ScreeningsService
 	) {}
 
 	ngOnInit() {
-		this.selectionsByScreening$ = zip(
-			this.shoppingCartService.getSelectedReservations(),
-			this.screeningsService.getScreenings(),
-			this.movieService.getMovies()
+		this.moviesScreeningsSelections$ = zip(
+			this._selectionsService.getSelectedReservations(),
+			this._screeningsService.getScreenings(),
+			this._movieService.getMovies()
 		).pipe(
 			map((params: [Reservation[], Screening[], MovieShort[]]) => {
 				const [selections, screenings, movies] = params;
 
-				const selectionsByScreening: MovieSelections[] = [];
+				const selectionsByScreening: MoviesScreeningsSelections[] = [];
 
 				selections.forEach((selection) => {
 					const screening = screenings.find((s) => s.id === selection.screeningId);
 					const movie = movies.find((m) => m.id === screening.movieId);
 
-					const foundMovieSelection: MovieSelections = selectionsByScreening.find((sbs) => sbs.movie.id === movie.id);
+					const foundMovieSelection: MoviesScreeningsSelections = selectionsByScreening.find((sbs) => sbs.movie.id === movie.id);
 
 					if (foundMovieSelection) {
 						const foundScreening = foundMovieSelection.screenings.find((s) => s.screening.id === screening.id);
@@ -73,7 +73,7 @@ export class SelectionsComponent implements OnInit {
 	}
 }
 
-interface MovieSelections {
+interface MoviesScreeningsSelections {
 	movie: MovieShort;
 	screenings: {
 		screening: Screening;

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
-import { ShoppingCartService } from '@core/services/shopping-cart/shopping-cart.service';
+import { SelectionsService } from '@core/services/selections/selections.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -16,10 +16,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 	private _destroyed$ = new Subject<void>();
 
-	constructor(private _shoppingCartService: ShoppingCartService, private changeDetector: ChangeDetectorRef) {}
+	constructor(private _selectionsService: SelectionsService, private changeDetector: ChangeDetectorRef) {}
 
 	ngOnInit() {
-		this._shoppingCartService
+		this._selectionsService
 			.getSelectedReservations()
 			.pipe(takeUntil(this._destroyed$))
 			.subscribe((sr) => {

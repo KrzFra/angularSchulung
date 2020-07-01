@@ -8,7 +8,7 @@ import { Theater } from '@core/interfaces/theater.interface';
 import { MovieService } from '@core/services/movie/movie.service';
 import { ReservationService } from '@core/services/reservation/reservation.service';
 import { ScreeningsService } from '@core/services/schedule/screenings.service';
-import { ShoppingCartService } from '@core/services/shopping-cart/shopping-cart.service';
+import { SelectionsService } from '@core/services/selections/selections.service';
 import { forkJoin, Observable } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
 
@@ -22,11 +22,11 @@ export class SeatSelectionComponent implements OnInit {
 	@HostBinding() class = 'app-seat-selection';
 
 	constructor(
-		private activatedRoute: ActivatedRoute,
-		private movieService: MovieService,
-		private screeningsService: ScreeningsService,
-		private reservationService: ReservationService,
-		private shoppingCartService: ShoppingCartService
+		private _activatedRoute: ActivatedRoute,
+		private _movieService: MovieService,
+		private _screeningsService: ScreeningsService,
+		private _reservationService: ReservationService,
+		private _selectionsService: SelectionsService
 	) {}
 
 	movie: MovieLong;
@@ -36,23 +36,23 @@ export class SeatSelectionComponent implements OnInit {
 	selections$: Observable<Reservation[]>;
 
 	ngOnInit(): void {
-		this.activatedRoute.params
+		this._activatedRoute.params
 			.pipe(
 				concatMap((params: { screeningId: string }) => {
-					return this.screeningsService.getScreeningById(params.screeningId);
+					return this._screeningsService.getScreeningById(params.screeningId);
 				}),
 				concatMap((screening: Screening) => {
 					this.screening = screening;
 
-					this.selections$ = this.shoppingCartService.getSelectedReservations().pipe(
+					this.selections$ = this._selectionsService.getSelectedReservations().pipe(
 						map((screenings) => {
 							return screenings.filter((s) => s.screeningId === this.screening.id);
 						})
 					);
 
 					return forkJoin({
-						movie: this.movieService.getMovie(this.screening.movieId),
-						reservations: this.reservationService.getReservationsForScreening(this.screening.id),
+						movie: this._movieService.getMovie(this.screening.movieId),
+						reservations: this._reservationService.getReservationsForScreening(this.screening.id),
 					});
 				}),
 				map((values: { movie: MovieLong; reservations: Reservation[] }) => {
@@ -68,7 +68,7 @@ export class SeatSelectionComponent implements OnInit {
 
 	onSeatClicked_seatSelector(params: { rowId: number; seatId: number }) {
 		const { rowId, seatId } = params;
-		this.shoppingCartService.toggleInSelectedReservations({
+		this._selectionsService.toggleInSelectedReservations({
 			screeningId: this.screening.id,
 			rowId,
 			seatId,
@@ -76,6 +76,6 @@ export class SeatSelectionComponent implements OnInit {
 	}
 
 	onResetSelection__seatSelector() {
-		this.shoppingCartService.removeFromSelectedReservationsByScreeningId(this.screening.id);
+		this._selectionsService.removeFromSelectedReservationsByScreeningId(this.screening.id);
 	}
 }

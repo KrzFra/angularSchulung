@@ -1,17 +1,19 @@
 <div class="app-content-wrapper">
-	<div *ngIf="(selectionsByScreening$ | async)?.length === 0">
-		No Selections
-	</div>
-	<div *ngIf="(selectionsByScreening$ | async)?.length > 0">
-		<div *ngFor="let selectionByScreening of selectionsByScreening$ | async">
-			<div>
-				{{ selectionByScreening.movie.title }}
-				<img [src]="selectionByScreening.movie.posterUrl" alt="" />
-			</div>
-			<div *ngFor="let screenig of selectionByScreening.screenings">
-				{{ screenig.screening.time | date }}
-				<div *ngFor="let selection of screenig.selections">{{ selection.rowId }} {{ selection.seatId }}</div>
-			</div>
+	<div *ngIf="(moviesScreeningsSelections$ | async)?.length > 0; else noSelections">
+		<div *ngFor="let movieScreeningsSelections of moviesScreeningsSelections$ | async">
+			<app-movie-card [movie]="movieScreeningsSelections.movie">
+				<div
+					class="app-selections__screening-row"
+					*ngFor="let screeningSelections of movieScreeningsSelections.screenings"
+				>
+          <div>{{ screeningSelections.screening.time | date:'mediumDate' }} {{ screeningSelections.screening.time | date:'shortTime' }}</div>
+          <div></div>
+				</div>
+			</app-movie-card>
 		</div>
 	</div>
 </div>
+
+<ng-template #noSelections>
+	No Selections
+</ng-template>
