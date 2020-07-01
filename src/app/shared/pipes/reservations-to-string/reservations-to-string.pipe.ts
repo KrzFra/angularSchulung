@@ -12,7 +12,7 @@ export class ReservationsToStringPipe implements PipeTransform {
 				return a.rowId !== b.rowId ? a.rowId - b.rowId : a.seatId - b.seatId;
 			})
 			.map((v) => {
-				return toLetter(v.rowId) + v.seatId;
+				return toLetter(v.rowId - 1) + v.seatId;
 			})
 			.join(', ');
 	}
