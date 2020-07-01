@@ -6,8 +6,13 @@
 					class="app-selections__screening-row"
 					*ngFor="let screeningSelections of movieScreeningsSelections.screenings"
 				>
-          <div>{{ screeningSelections.screening.time | date:'mediumDate' }} {{ screeningSelections.screening.time | date:'shortTime' }}</div>
-          <div></div>
+					<div>
+						<a [routerLink]="'/seat-selection/' + screeningSelections.screening.id">
+							{{ screeningSelections.screening.time | date: 'mediumDate' }}
+							{{ screeningSelections.screening.time | date: 'shortTime' }}
+						</a>
+					</div>
+					<div>{{ screeningSelections.selections | reservationsToString }}</div>
 				</div>
 			</app-movie-card>
 		</div>

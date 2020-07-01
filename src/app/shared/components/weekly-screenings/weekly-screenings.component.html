@@ -5,7 +5,7 @@
 	</div>
 
 	<a
-		class="app-weekly-screenings__cell"
+		class="app-weekly-screenings__cell app-a-block"
 		*ngFor="let screening of screeningsThisDay.screenings"
 		[routerLink]="['/seat-selection/', screening.id]"
 	>

@@ -16,6 +16,24 @@ body {
 	color: $colors__text;
 }
 
+a {
+	color: $colors__text;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	&.app-a-block {
+		display: block;
+		margin: 0.5rem;
+		border-radius: 0 10px;
+		padding: 0.5rem 0;
+		text-align: center;
+		background-color: $colors__background--light;
+	}
+}
+
 .app-title-block {
 	margin: 0;
 	padding: 1rem;

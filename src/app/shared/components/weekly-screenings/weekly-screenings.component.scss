@@ -16,19 +16,4 @@
 		text-align: center;
 		background-color: $colors__primary;
 	}
-
-	&__cell {
-		display: block;
-		margin: 0.5rem;
-		border-radius: 0 10px;
-		padding: 0.5rem 0;
-		color: $colors__text;
-		text-align: center;
-		text-decoration: none;
-		background-color: $colors__background--light;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
 }
