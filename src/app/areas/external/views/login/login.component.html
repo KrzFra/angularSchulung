@@ -1,3 +1,14 @@
 <div class="app-content-wrapper">
-	<p>login works!</p>
+	<form class="app-login__form" [formGroup]="formGroup" (ngSubmit)="onSubmit_form()">
+		<label class="app-label" for="username">
+			Username
+		</label>
+		<input class="app-input" id="username" formControlName="username" type="text" />
+		<label class="app-label" for="password">
+			Password
+		</label>
+		<input class="app-input" id="password" formControlName="password" type="text" />
+
+		<input class="app-button app-button--full-width" type="submit" value="Login" />
+	</form>
 </div>

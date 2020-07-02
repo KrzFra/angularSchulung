@@ -1,18 +1,18 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit_form()">
-	<label class="app-reservation-form__label" for="firstName">
+	<label class="app-label" for="firstName">
 		First Name
 	</label>
-	<input class="app-reservation-form__input" id="firstName" formControlName="firstName" type="text" />
+	<input class="app-input" id="firstName" formControlName="firstName" type="text" />
 
-	<label class="app-reservation-form__label" for="lastName">
+	<label class="app-label" for="lastName">
 		Last Name
 	</label>
-	<input class="app-reservation-form__input" id="lastName" formControlName="lastName" type="text" />
+	<input class="app-input" id="lastName" formControlName="lastName" type="text" />
 
-	<label class="app-reservation-form__label" for="email">
+	<label class="app-label" for="email">
 		E-Mail*
 	</label>
-	<input class="app-reservation-form__input" id="email" formControlName="email" type="text" required />
+	<input class="app-input" id="email" formControlName="email" type="text" required />
 
-	<input class="app-reservation-form__submit-button app-button" type="submit" value="Make Reservation" />
+	<input class="app-button app-button--full-width" type="submit" value="Make Reservation" />
 </form>

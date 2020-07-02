@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ChangeDetectionStrategy, Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
@@ -9,7 +10,14 @@ import { ChangeDetectionStrategy, Component, OnInit, HostBinding } from '@angula
 export class LoginComponent implements OnInit {
 	@HostBinding() class = 'app-login';
 
+	formGroup = new FormGroup({
+		username: new FormControl('', [Validators.required]),
+		password: new FormControl('', [Validators.required]),
+	});
+
 	constructor() {}
 
-	ngOnInit(): void {}
+	ngOnInit() {}
+
+	onSubmit_form() {}
 }

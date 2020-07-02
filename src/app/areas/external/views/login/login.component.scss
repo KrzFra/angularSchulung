@@ -1,0 +1,10 @@
+.app-login {
+	&:host {
+		display: block;
+	}
+
+	&__form {
+		max-width: 20rem;
+		margin: 0 auto;
+	}
+}

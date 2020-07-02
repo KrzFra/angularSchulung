@@ -52,10 +52,35 @@ a {
 		cursor: pointer;
 		background-color: $colors__primary--light;
 	}
+
+	&--full-width {
+		width: 100%;
+		font-size: 1.5rem;
+	}
 }
 
 .app-content-wrapper {
 	max-width: 940px;
 	padding: 0 20px;
 	margin: 0 auto;
+}
+
+.app-label {
+	display: block;
+	font-weight: bold;
+	color: $colors__primary--dark;
+	margin-bottom: 0.5rem;
+}
+
+.app-input {
+	display: block;
+	width: 100%;
+	margin-bottom: 1rem;
+	padding: 1rem;
+	border-radius: 0 15px;
+	border: 1px solid $colors__primary;
+
+	&.ng-invalid.ng-touched {
+		border-color: $colors__secondary;
+	}
 }
