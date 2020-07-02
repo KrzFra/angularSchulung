@@ -7,8 +7,13 @@
 		background-color: $colors__primary--dark;
 	}
 
-	&__content {
-		padding: 2rem 0;
+	&__link-container {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__link {
+		padding: 2rem 2rem 2rem 0;
 		color: $colors__text--light;
 	}
 }

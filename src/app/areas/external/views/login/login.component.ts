@@ -1,5 +1,9 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ChangeDetectionStrategy, Component, OnInit, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from '@core/services/login/login.service';
+import { Subject } from 'rxjs';
+import { delay, first, takeUntil } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-login',
@@ -7,7 +11,7 @@ import { ChangeDetectionStrategy, Component, OnInit, HostBinding } from '@angula
 	styleUrls: ['./login.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnDestroy {
 	@HostBinding() class = 'app-login';
 
 	formGroup = new FormGroup({
@@ -15,9 +19,41 @@ export class LoginComponent implements OnInit {
 		password: new FormControl('', [Validators.required]),
 	});
 
-	constructor() {}
+	hasLoginFailed = false;
+	isLoginCheckInProgress = false;
 
-	ngOnInit() {}
+	private _destroyed$ = new Subject<void>();
 
-	onSubmit_form() {}
+	constructor(
+		private _loginService: LoginService,
+		private _router: Router,
+		private _changeDetector: ChangeDetectorRef
+	) {}
+
+	onSubmit_form() {
+		if (this.formGroup.valid && !this.isLoginCheckInProgress) {
+			this._loginService
+				.checkLogin(this.formGroup.get('username').value, this.formGroup.get('password').value)
+				.pipe(delay(2000), first(), takeUntil(this._destroyed$))
+				.subscribe((loginSuccesfull: boolean) => {
+					this.isLoginCheckInProgress = false;
+
+					if (loginSuccesfull) {
+						this._router.navigate(['/internal/reserved-seats']);
+					} else {
+						this.hasLoginFailed = true;
+					}
+
+					this._changeDetector.markForCheck();
+				});
+		}
+
+		this.hasLoginFailed = false;
+		this.isLoginCheckInProgress = true;
+	}
+
+	ngOnDestroy() {
+		this._destroyed$.next();
+		this._destroyed$.complete();
+	}
 }

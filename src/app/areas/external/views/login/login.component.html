@@ -7,8 +7,15 @@
 		<label class="app-label" for="password">
 			Password
 		</label>
-		<input class="app-input" id="password" formControlName="password" type="text" />
+		<input class="app-input" id="password" formControlName="password" type="password" />
 
-		<input class="app-button app-button--full-width" type="submit" value="Login" />
+		<input
+			class="app-button app-button--full-width app-login__login-button"
+			[ngClass]="{ 'app-login__login-button--animated': isLoginCheckInProgress }"
+			type="submit"
+			value="Login"
+		/>
+
+		<div class="app-login__error" *ngIf="hasLoginFailed">Login Failed</div>
 	</form>
 </div>

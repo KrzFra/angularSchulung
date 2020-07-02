@@ -1,3 +1,5 @@
+@import 'constants/colors';
+
 .app-login {
 	&:host {
 		display: block;
@@ -6,5 +8,31 @@
 	&__form {
 		max-width: 20rem;
 		margin: 0 auto;
+	}
+
+	&__login-button {
+		&--animated {
+			animation-name: pulsingBackground;
+			animation-duration: 0.5s;
+			animation-iteration-count: infinite;
+		}
+	}
+
+	&__error {
+		margin-top: 1rem;
+		text-align: center;
+		color: $colors__secondary;
+	}
+}
+
+@keyframes pulsingBackground {
+	0% {
+		background-color: $colors__primary--light;
+	}
+	50% {
+		background-color: $colors__primary;
+	}
+	100% {
+		background-color: $colors__primary--light;
 	}
 }
