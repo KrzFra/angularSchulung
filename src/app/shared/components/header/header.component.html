@@ -1,7 +1,12 @@
 <div class="app-content-wrapper app-header__content-wrapper">
 	<div class="app-header__logo"><a routerLink="/">Awesome Theater</a></div>
 	<div class="app-header__menu">
-		<a class="app-header__menu__item" routerLink="/schedule" routerLinkActive="app-header__menu__item--active">
+		<a
+			class="app-header__menu__item"
+			routerLink="/"
+			[routerLinkActiveOptions]="{ exact: true }"
+			routerLinkActive="app-header__menu__item--active"
+		>
 			Schedule
 		</a>
 		<a class="app-header__menu__item" routerLink="/selections" routerLinkActive="app-header__menu__item--active">
